@@ -460,43 +460,43 @@ export const goodsComponents: ComponentItem[] = [
       titleMarginBottom: 0,
       list: [
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
         {
-          src: 'https://image3.suning.cn/uimg/cms/img/161293957567317395.pngfrom=mobile',
+          src: 'https://img01.yzcdn.cn/vant/ipad.jpeg',
           title: '手机数码',
         },
       ]

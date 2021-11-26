@@ -9,11 +9,5 @@ import zhCN from 'ant-design-vue/es/locale/zh_CN'
 </script>
 
 <style lang='scss'>
-html,
-body,
-#app,
-.ant-tabs-vertical {
-  height: 100%;
-  overflow-x: hidden;
-}
+@import "./styles/ui";
 </style>

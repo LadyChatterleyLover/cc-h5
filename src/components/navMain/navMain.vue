@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="editor" @drop="drop" @dragover="dragover" @click="clickEditor">
+    <div class="editor" id="cc-h5-editor" @drop="drop" @dragover="dragover" @click="clickEditor">
       <div ref="editorItem" v-if="componentList && componentList.length">
         <div v-for="(item, index) in componentList" :key="index">
           <a-dropdown :trigger="['contextmenu']">

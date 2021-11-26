@@ -1,0 +1,14 @@
+html,
+body,
+#app,
+.ant-tabs-vertical {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.cc-h5-template-modal {
+  .ant-modal-content {
+    height: 500px;
+    overflow: scroll;
+  }
+}
