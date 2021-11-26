@@ -609,4 +609,20 @@ export const goodsComponents: ComponentItem[] = [
       icon: 'my'
     }
   },
+  {
+    type: 'qrcode',
+    label: '二维码',
+    icon: 'scan',
+    attrs: {
+      value: 'https://www.baidu.com',
+      errorCorrectionLevel: 'H',
+      tag: 'svg',
+      margin: 4,
+      width: 200,
+      src: "https://avatars.githubusercontent.com/u/3456749",
+      imgWidth: 40,
+      imgHeight: 40,
+      backgroundColor: '#fff'
+    }
+  }
 ]

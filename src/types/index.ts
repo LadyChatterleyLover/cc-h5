@@ -25,14 +25,14 @@ import { GoodsActionsAttrs } from "./goodsAction"
 import { CouponAttrs } from "./coupon"
 import { GoodsCardAttrs } from "./goodsCard"
 import { ContactCardAttrs } from "./contactCard"
+import { QrcodeAttrs } from "./qrcode"
 
 
 export interface ComponentItem {
   type: 'button' | 'icon' | 'input' | 'searchbar' | 'swiper' | 'swiper-item' | 'rate' | 'noticebar'
   | 'video' | 'navbar' | 'avatar' | 'divider' | 'price' | 'tabbar' | 'tabbar-item' | 'tag'
-  | 'progress' | 'circleprogress' | 'switch' | 'line' | 'bar' | 'pie' | 'funnel'
-  | 'more' | 'goods-nav' | 'goods-action' | 'goods-card' | 'coupon' | 'contact-card'
-  ,
+  | 'progress' | 'circleprogress' | 'switch' | 'line' | 'bar' | 'pie' | 'funnel' | 'more'
+  | 'goods-nav' | 'goods-action' | 'goods-card' | 'coupon' | 'contact-card' | 'qrcode',
   icon?: string,
   label?: string,
   value?: any,
@@ -41,6 +41,6 @@ export interface ComponentItem {
   | ButtonAttrs | AvatarAttrs | DividerAttrs | PriceAttrs | TabbarAttrs | TagAttrs | RateAttrs
   | ProgressAttrs | CircleProgressAttrs | SwitchAttrs | LineAttrs | BarAttrs | PieAttrs | FunnelAttrs
   | MoreAttrs | GoodsNavAttrs | GoodsActionsAttrs | GoodsCardAttrs | CouponAttrs | ContactCardAttrs
-  ,
+  | QrcodeAttrs,
   children?: ComponentItem[]
 }

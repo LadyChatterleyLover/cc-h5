@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PlayCircleOutlined, EyeOutlined, DownloadOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons-vue'
+import { PlayCircleOutlined, EyeOutlined, DownloadOutlined, CopyOutlined, DeleteOutlined, MobileOutlined } from '@ant-design/icons-vue'
 import { useStore } from 'vuex'
 import { Modal, message } from 'ant-design-vue'
 import { computed, ComputedRef } from 'vue'
@@ -45,6 +45,10 @@ let list: ListItem[] = [
   {
     icon: PlayCircleOutlined,
     name: '预览'
+  },
+  {
+    icon: MobileOutlined,
+    name: '真机调试',
   },
   {
     icon: EyeOutlined,
@@ -78,6 +82,9 @@ let clickItem = (item: ListItem) => {
         message.success('清空成功')
       }
     })
+  }
+  if (item.name === '真机调试') {
+
   }
   if (item.name === '预览') {
     if (!componentList.value) message.warn('请先生成组件')
@@ -138,7 +145,7 @@ let clickItem = (item: ListItem) => {
         color: #f56c6c;
       }
       .icon {
-        margin-right: 8px;
+        margin-right: 3px;
         position: relative;
         top: 1px;
       }

@@ -29,6 +29,7 @@
         <goods-card-attrs v-if="current.type === 'goods-card'"></goods-card-attrs>
         <coupon-attrs v-if="current.type === 'coupon'"></coupon-attrs>
         <contact-card-attrs v-if="current.type === 'contact-card'"></contact-card-attrs>
+        <qrcode-attrs v-if="current.type === 'qrcode'"></qrcode-attrs>
       </template>
       <div v-else>
         <a-result status="404" title="还没有数据喔" sub-title="赶快拖拽组件来生成你的H5页面吧"></a-result>
@@ -64,6 +65,7 @@ import goodsActionAttrs from '../componentAttrs/goodsAction/index.vue'
 import goodsCardAttrs from '../componentAttrs/goodsCard/index.vue'
 import couponAttrs from '../componentAttrs/coupon/index.vue'
 import contactCardAttrs from '../componentAttrs/contactCard/index.vue'
+import qrcodeAttrs from '../componentAttrs/qrcode/index.vue'
 
 
 

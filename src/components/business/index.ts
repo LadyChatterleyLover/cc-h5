@@ -5,6 +5,7 @@ import GoodsAction from './goodsAction'
 import GoodsCard from './goodsCard'
 import Coupon from './coupon'
 import ContactCard from './contactCard'
+import Qrcode from './qrcode'
 
 const components = [
   More,
@@ -13,6 +14,7 @@ const components = [
   GoodsCard,
   Coupon,
   ContactCard,
+  Qrcode
 ]
 
 export default {

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
+    "@chenfengyuan/vue-qrcode": "^2.0.0-rc.1",
     "@nutui/nutui": "^3.1.11",
     "@types/echarts": "^4.9.12",
     "@types/file-saver": "^2.0.4",
@@ -18,7 +19,8 @@
     "echarts": "^5.2.2",
     "file-saver": "^2.0.5",
     "lodash": "^4.17.21",
-    "vue": "^3.2.14",
+    "qrcode": "^1.5.0",
+    "vue": "^3.2.23",
     "vue-router": "^4.0.11",
     "vue3-colorpicker": "^2.0.3",
     "vuex": "^4.0.2"
