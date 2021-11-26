@@ -65,6 +65,9 @@
             <div>
               <img :src="item.cover" />
             </div>
+            <div class="btn">
+              <a-button @click.stop="useTemplate(item)" type="primary" size="small">立即使用</a-button>
+            </div>
           </div>
         </div>
         <div v-else>暂无模板</div>
@@ -74,10 +77,10 @@
 </template>
 
 <script lang="ts" setup>
-import { PlayCircleOutlined, SaveOutlined, EyeOutlined, DownloadOutlined, CopyOutlined, DeleteOutlined, MobileOutlined } from '@ant-design/icons-vue'
+import { PlayCircleOutlined, SaveOutlined, ExclamationCircleOutlined, EyeOutlined, DownloadOutlined, CopyOutlined, DeleteOutlined, MobileOutlined } from '@ant-design/icons-vue'
 import { useStore } from 'vuex'
 import { Modal, message } from 'ant-design-vue'
-import { computed, ComputedRef, ref, watch } from 'vue'
+import { computed, ComputedRef, ref, watch, createVNode } from 'vue'
 import { useCopy } from '../../hooks/useCopy'
 import { ComponentItem } from '@/types'
 import { vueTemplate } from '@/utils/template'
@@ -306,6 +309,28 @@ let open = () => {
   })
 }
 
+let useTemplate = (item: any) => {
+  if (componentList.value) {
+    Modal.confirm({
+      title: 'cc-h5温馨提示',
+      icon: createVNode(ExclamationCircleOutlined),
+      content: '导入模板会在已有页面追加元素，如画布中元素不需要, 可及时清空~',
+      cancelText: '去清空',
+      okText: '确认导入',
+      onOk() {
+        let arr = componentList.value.concat(item.config)
+        localStorage.setItem('componentList', JSON.stringify(arr))
+        store.commit('setComponentList', arr)
+        templateVisible.value = false
+      }
+    })
+  } else {
+    localStorage.setItem('componentList', JSON.stringify(item.config))
+    store.commit('setComponentList', item.config)
+    templateVisible.value = false
+  }
+}
+
 watch(() => [activeKey.value, templates.value], val => {
   currentTemplate.value = (val[1] as any)!.filter((item: any) => item.category === val[0])
 })
@@ -372,6 +397,20 @@ watch(() => [activeKey.value, templates.value], val => {
     align-items: center;
     cursor: pointer;
     margin-bottom: 15px;
+    position: relative;
+    &:hover {
+      .btn {
+        display: block;
+      }
+    }
+    .btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      display: none;
+    }
     .title {
       font-size: 22px;
       font-weight: 700;
@@ -379,7 +418,7 @@ watch(() => [activeKey.value, templates.value], val => {
     }
     img {
       width: 210px;
-      height: 450px;
+      height: 360px;
     }
   }
 }
