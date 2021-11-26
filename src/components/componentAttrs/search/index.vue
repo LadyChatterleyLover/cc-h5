@@ -81,6 +81,9 @@
           size="small"
         >选择图标</a-button>
       </a-form-item>
+      <a-form-item label="字段名称">
+        <a-input v-model:value="current.field" placeholder="请输入字段名称" allowClear></a-input>
+      </a-form-item>
       <a-form-item label="占位符">
         <a-input v-model:value="current.attrs.placeholder" placeholder="请输入占位符" allowClear></a-input>
       </a-form-item>

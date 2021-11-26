@@ -18,6 +18,7 @@ export const baseComponent: ComponentItem[] = [
     label: '搜索框',
     icon: 'search',
     value: '',
+    field: 'searchValue',
     attrs: {
       placeholder: '请搜索',
       background: '',
@@ -33,6 +34,7 @@ export const baseComponent: ComponentItem[] = [
     value: '',
     label: '输入框',
     icon: 'edit',
+    field: 'value',
     attrs: {
       placeholder: '请输入',
       maxLength: 9999,
@@ -280,6 +282,7 @@ export const baseComponent: ComponentItem[] = [
     type: 'rate',
     label: '评分',
     value: 3,
+    field: 'rate',
     icon: 'star-n',
     attrs: {
       count: 5,

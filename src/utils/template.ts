@@ -1,40 +1,123 @@
 import { ComponentItem } from "@/types"
 import cloneDeep from "lodash/cloneDeep"
 
-export const vueTemplate = (componentList: ComponentItem[]) => {
-  let template = ``
-  let attrs = ``
-  let script = ``
-  let isValue = componentList.find(item => item.field)
-  if (isValue) script += `import {ref} from 'vue'
-  `
+let template = ``
+let attrs = ``
+let script = ``
+let childStr = ``
+let slots = ``
+let cloneAttrs: any = {}
+let objStr = ``
 
-  componentList.map(item => {
-    for (let i in item.attrs) {
-      let cloneAttrs: any = cloneDeep(item.attrs)
-      attrs += `
-      ${typeof cloneAttrs[i] !== 'undefined' ? `${typeof cloneAttrs[i] === 'boolean' ? `${cloneAttrs[i] ? i : `:${i}="false"`}` : `${typeof cloneAttrs[i] === 'number' ? `:${i}=${cloneAttrs[i]}` : `${i}='${cloneAttrs[i]}'`}`}` : ''}`
+const jsonReplace = (val: string) => {
+  return val.
+    replace(/\"name\"/g, 'name')
+    .replace(/\"value\"/g, 'value')
+    .replace(/\"data\"/g, 'data')
+    .replace(/\"text\"/g, 'text')
+    .replace(/\"src\"/g, 'src')
+}
+
+
+const generateSlot = (attrs: any, name: string) => {
+  if (attrs[name]) {
+    if (attrs[name].startsWith('icon-')) {
+      slots += `
+      <template #${name}>
+        <nut-icon name="${attrs[name].slice(5)}"></nut-icon>
+      </template>`
+    } else {
+      slots += `
+      <template #${name}>
+        <span>${attrs[name]}</span>
+      </template>`
     }
-    template += `
+  }
+}
+
+
+
+export const vueTemplate = (componentList: ComponentItem[]) => {
+  if (componentList && componentList.length) {
+    let isValue = componentList.find(item => item.field || (item.attrs as any).seriesData)
+    if (isValue) script = `import {ref} from 'vue'
+  `
+    componentList.map(item => {
+      cloneAttrs = cloneDeep(item.attrs)
+      for (let i in item.attrs) {
+        if (i === 'width' || i === 'height') {
+          if (item.type === 'line' || item.type === 'bar' || item.type === 'pie' || item.type === 'funnel') {
+            let style = ``
+            style += `${i}: ${cloneAttrs[i]}px;`
+            attrs = `style="${style}"`
+          }
+        } else {
+          if (Array.isArray(cloneAttrs[i])) {
+            attrs += `
+      :${i}="${i}"`
+            objStr += `
+let ${i} = ref(${jsonReplace(JSON.stringify(cloneAttrs[i]))})`
+          } else {
+            attrs += `
+      ${typeof cloneAttrs[i] !== 'undefined' && cloneAttrs[i] !== '' ? `${typeof cloneAttrs[i] === 'boolean' ? `${cloneAttrs[i] ? i : `:${i}="false"`}` : `${typeof cloneAttrs[i] === 'number' ? `:${i}="${cloneAttrs[i]}"` : `${i}="${cloneAttrs[i]}"`}`}` : ''}`
+          }
+        }
+      }
+
+      if (item.type === 'searchbar') {
+        if (cloneAttrs.leftin) generateSlot(cloneAttrs, 'leftin')
+        if (cloneAttrs.leftout) generateSlot(cloneAttrs, 'leftout')
+        if (cloneAttrs.rightin) generateSlot(cloneAttrs, 'rightin')
+        if (cloneAttrs.rightout) generateSlot(cloneAttrs, 'rightout')
+      }
+      if (item.type === 'tabbar' || item.type === 'swiper') {
+        let childAttrs = ``
+        item.children!.map(child => {
+          for (let i in child.attrs) {
+            if ((child.attrs as any)[i]) {
+              childAttrs += `
+              ${i}="${(child.attrs as any)[i]}"`
+            }
+          }
+          if (item.type === 'tabbar') {
+            childStr += `
+          <nut-${child.type} ${childAttrs}>
+          </nut-${child.type}>`
+          } else {
+            childStr += `
+          <nut-${child.type}>
+            <img style="width: ${cloneAttrs.width}px;height:${cloneAttrs.height}px;" src="${(child.attrs as any).src}">
+          </nut-${child.type}>
+            `
+          }
+          childAttrs = ''
+        })
+      }
+      template += `
     <nut-${item.type} 
      ${item.field ? 'v-model=' + `"${item.field}"` : ''}
      ${attrs}>
-     
+     ${childStr}
+     ${item.type === 'searchbar' ? slots : ''}
     </nut-${item.type}>
     `
-    script += `${item.field ? `
-    let ${item.field} = ref('')` : ''}`
-    attrs = ''
-  })
-  return `
-    <template>
+      script += `${objStr}${item.field ? `
+    let ${item.field} = ref(${item.value ? item.value : '""'})` : ''}`
+      attrs = ''
+      slots = ''
+      objStr = ''
+      childStr = ''
+    })
+    return `<template>
       ${template}
     </template>
 
-    <script lang="ts" setup>
-    ${script}
-    </script>
+<script lang="ts" setup>
+  ${script}
+</script>
 
-    <style scoped lang="scss"></style>
+<style scoped lang="scss"></style>
   `
+  }
 }
+

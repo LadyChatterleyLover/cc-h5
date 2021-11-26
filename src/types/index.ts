@@ -36,6 +36,7 @@ export interface ComponentItem {
   icon?: string,
   label?: string,
   value?: any,
+  field?: string,
   attrs: SearchAttrs | IconAttrs | InputAttrs | SwiperAttrs | NoticeBarAttrs | NavbarAttrs | VideoAttrs
   | ButtonAttrs | AvatarAttrs | DividerAttrs | PriceAttrs | TabbarAttrs | TagAttrs | RateAttrs
   | ProgressAttrs | CircleProgressAttrs | SwitchAttrs | LineAttrs | BarAttrs | PieAttrs | FunnelAttrs
