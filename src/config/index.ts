@@ -37,7 +37,7 @@ export const baseComponent: ComponentItem[] = [
     field: 'value',
     attrs: {
       placeholder: '请输入',
-      maxLength: 9999,
+      maxLength: '',
       type: 'text',
       label: '文本',
       requireShow: false,
@@ -45,6 +45,22 @@ export const baseComponent: ComponentItem[] = [
       readonly: false,
       clearable: true,
       textAlign: 'left'
+    }
+  },
+  {
+    type: 'textarea',
+    icon: 'top',
+    label: '文本域',
+    value: '',
+    attrs: {
+      placeholder: '请输入内容',
+      maxLength: '',
+      rows: 2,
+      limitShow: false,
+      autosize: false,
+      textAlign: 'left',
+      readonly: false,
+      disabled: false
     }
   },
   {
@@ -173,6 +189,24 @@ export const baseComponent: ComponentItem[] = [
       bgColor: '',
       shape: 'round',
       size: 'normal'
+    }
+  },
+  {
+    type: 'range',
+    label: '滑块',
+    icon: 'mask-close',
+    value: 0,
+    attrs: {
+      range: false,
+      max: 100,
+      min: 0,
+      step: 1,
+      disabled: false,
+      hiddenRange: false,
+      hiddenTag: false,
+      activeColor: 'rgba(250, 44, 25, 1)',
+      inactiveColor: 'rgba(255, 163, 154, 1)',
+      buttonColor: 'rgba(250, 44, 25, 1)',
     }
   },
   {

@@ -4,6 +4,7 @@
       <template v-if="current">
         <h2 style="margin: 10px;">属性设置</h2>
         <input-attrs v-if="current.type === 'input'"></input-attrs>
+        <textarea-attrs v-if="current.type === 'textarea'"></textarea-attrs>
         <icon-attrs v-if="current.type === 'icon'"></icon-attrs>
         <search-attrs v-if="current.type === 'searchbar'"></search-attrs>
         <swiper-attrs v-if="current.type === 'swiper'"></swiper-attrs>
@@ -40,6 +41,7 @@
 
 <script lang="ts" setup>
 import inputAttrs from '../componentAttrs/input/index.vue'
+import textareaAttrs from '../componentAttrs/textarea/index.vue'
 import iconAttrs from '../componentAttrs/icon/index.vue'
 import searchAttrs from '../componentAttrs/search/index.vue'
 import swiperAttrs from '../componentAttrs/swiper/index.vue'

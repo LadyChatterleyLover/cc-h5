@@ -108,6 +108,7 @@ let currentComponent = computed(() => store.state.currentComponent)
 let activeIndex = computed(() => store.state.activeIndex)
 let editorItem = ref<HTMLDivElement | null>(null)
 
+let value = ref(40)
 let dragover = (e: DragEvent) => {
   e.preventDefault()
 }
