@@ -7,6 +7,7 @@
         <textarea-attrs v-if="current.type === 'textarea'"></textarea-attrs>
         <icon-attrs v-if="current.type === 'icon'"></icon-attrs>
         <search-attrs v-if="current.type === 'searchbar'"></search-attrs>
+        <radio-attrs v-if="current.type === 'radiogroup'"></radio-attrs>
         <swiper-attrs v-if="current.type === 'swiper'"></swiper-attrs>
         <noticebar-attrs v-if="current.type === 'noticebar'"></noticebar-attrs>
         <navbar-attrs v-if="current.type === 'navbar'"></navbar-attrs>
@@ -44,6 +45,7 @@ import inputAttrs from '../componentAttrs/input/index.vue'
 import textareaAttrs from '../componentAttrs/textarea/index.vue'
 import iconAttrs from '../componentAttrs/icon/index.vue'
 import searchAttrs from '../componentAttrs/search/index.vue'
+import radioAttrs from '../componentAttrs/radio/index.vue'
 import swiperAttrs from '../componentAttrs/swiper/index.vue'
 import noticebarAttrs from '../componentAttrs/noticebar/index.vue'
 import navbarAttrs from '../componentAttrs/navbar/index.vue'

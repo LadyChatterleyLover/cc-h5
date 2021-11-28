@@ -1,6 +1,7 @@
 import { InputAttrs } from "./input"
 import { TextareaAttrs } from "./textarea"
 import { IconAttrs } from "./icon"
+import { RadioAttrs } from './radio'
 import { NavbarAttrs } from "./navbar"
 import { NoticeBarAttrs } from "./noticeBar"
 import { SearchAttrs } from "./searchbar"
@@ -32,16 +33,17 @@ import { QrcodeAttrs } from "./qrcode"
 
 
 
+
 export interface ComponentItem {
-  type: 'button' | 'icon' | 'input' | 'textarea' | 'searchbar' | 'swiper' | 'swiper-item' | 'rate' | 'noticebar'
-  | 'video' | 'navbar' | 'range' | 'avatar' | 'divider' | 'price' | 'tabbar' | 'tabbar-item' | 'tag'
+  type: 'button' | 'icon' | 'input' | 'textarea' | 'radiogroup' | 'radio' | 'searchbar' | 'swiper' | 'swiper-item'
+  | 'rate' | 'noticebar' | 'video' | 'navbar' | 'range' | 'avatar' | 'divider' | 'price' | 'tabbar' | 'tabbar-item' | 'tag'
   | 'progress' | 'circleprogress' | 'switch' | 'line' | 'bar' | 'pie' | 'funnel' | 'more'
   | 'goods-nav' | 'goods-action' | 'goods-card' | 'coupon' | 'contact-card' | 'qrcode',
   icon?: string,
   label?: string,
   value?: any,
   field?: string,
-  attrs: SearchAttrs | IconAttrs | InputAttrs | TextareaAttrs | SwiperAttrs | NoticeBarAttrs | NavbarAttrs | VideoAttrs
+  attrs: SearchAttrs | IconAttrs | InputAttrs | TextareaAttrs | RadioAttrs | SwiperAttrs | NoticeBarAttrs | NavbarAttrs | VideoAttrs
   | ButtonAttrs | AvatarAttrs | RangeAttrs | DividerAttrs | PriceAttrs | TabbarAttrs | TagAttrs | RateAttrs
   | ProgressAttrs | CircleProgressAttrs | SwitchAttrs | LineAttrs | BarAttrs | PieAttrs | FunnelAttrs
   | MoreAttrs | GoodsNavAttrs | GoodsActionsAttrs | GoodsCardAttrs | CouponAttrs | ContactCardAttrs

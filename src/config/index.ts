@@ -64,6 +64,55 @@ export const baseComponent: ComponentItem[] = [
     }
   },
   {
+    type: 'radiogroup',
+    label: '单选框',
+    icon: 'check-normal',
+    value: '1',
+    field: 'radio',
+    attrs: {
+      textPosition: 'right',
+      direction: 'vertical',
+    },
+    children: [
+      {
+        type: 'radio',
+        attrs: {
+          label: '1',
+          text: '选项1',
+          disabled: false,
+          iconSize: 18,
+
+          shape: 'round',
+          name: '选项1'
+        }
+      },
+      {
+        type: 'radio',
+        attrs: {
+          label: '2',
+          text: '选项1',
+          disabled: false,
+          iconSize: 18,
+          iconName: 'check-normal',
+          shape: 'round',
+          name: '选项2'
+        }
+      },
+      {
+        type: 'radio',
+        attrs: {
+          label: '3',
+          text: '选项1',
+          disabled: false,
+          iconSize: 18,
+          iconName: 'check-normal',
+          shape: 'round',
+          name: '选项3'
+        }
+      }
+    ]
+  },
+  {
     type: 'swiper',
     label: '轮播图',
     icon: 'horizontal',

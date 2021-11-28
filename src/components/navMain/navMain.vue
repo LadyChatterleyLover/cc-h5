@@ -39,13 +39,16 @@
                     || (item.type === 'circleprogress' && (item.attrs as any).isAuto)
                   "
                 >{{ (item.attrs as any).text }}</template>
-                <template v-if="item.type === 'swiper' || item.type === 'tabbar'">
+                <template
+                  v-if="item.type === 'swiper' || item.type === 'radiogroup' || item.type === 'tabbar'"
+                >
                   <component
                     v-for="(child, i) in item.children"
                     :is="`nut-${child.type}`"
                     :key="i"
                     v-bind="child.attrs"
                   >
+                    <span v-if="item.type === 'radiogroup'">{{ (child.attrs as any).name }}</span>
                     <img
                       :style="{ width: (item.attrs as any).width + 'px', height: (item.attrs as any).height + 'px' }"
                       v-if="child.type === 'swiper-item'"
