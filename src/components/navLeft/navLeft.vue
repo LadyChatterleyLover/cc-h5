@@ -39,7 +39,7 @@ import LeftItem from '../leftItem/LeftItem.vue'
 import { HomeOutlined, BarChartOutlined, AccountBookOutlined } from '@ant-design/icons-vue'
 
 
-let activeKey = ref('1')
+let activeKey = ref('3')
 </script>
 
 <style lang='scss' scoped>

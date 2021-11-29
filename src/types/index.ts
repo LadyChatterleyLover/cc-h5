@@ -32,6 +32,12 @@ import { StepperAttrs } from './stepper'
 import { EmptyAttrs } from './empty'
 import { SkeletonAttrs } from './skeleton'
 import { PaginationAttrs } from './pagination'
+import { AreaAttrs } from './area'
+import { ContactEdit } from './contactEdit'
+import { ContactList } from './contactList'
+import { SubmitBarAttrs } from './submitBar'
+import { AddressListAttrs } from "./addressList"
+import { AddressEditAttrs } from "./addressEdit"
 
 
 
@@ -41,7 +47,8 @@ export interface ComponentItem {
   type: 'button' | 'icon' | 'field' | 'textarea' | 'radio-group' | 'radio' | 'checkbox-group' | 'checkbox' |
   'search' | 'swipe' | 'swipe-item' | 'rate' | 'notice-bar' | 'stepper' | 'nav-bar' | 'slider' | 'avatar' | 'divider' | 'price' | 'tabbar' | 'tabbar-item' | 'tag'
   | 'progress' | 'circle' | 'empty' | 'pagination' | 'switch' | 'skeleton' | 'line' | 'bar' | 'pie' | 'funnel' | 'more'
-  | 'goods-nav' | 'goods-action' | 'good-card' | 'coupons' | 'contact-card' | 'qrcode',
+  | 'goods-nav' | 'goods-action' | 'good-card' | 'coupons' | 'contact-card' | 'qrcode' | 'area'
+  | 'address-list' | 'address-edit' | 'contact-edit' | 'contact-list' | 'submit-bar',
   icon?: string,
   label?: string,
   value?: any,
@@ -50,6 +57,6 @@ export interface ComponentItem {
   | ButtonAttrs | AvatarAttrs | SliderAttrs | StepperAttrs | SkeletonAttrs | DividerAttrs | PriceAttrs | TabbarAttrs | TagAttrs | RateAttrs
   | ProgressAttrs | CircleProgressAttrs | EmptyAttrs | PaginationAttrs | SwitchAttrs | LineAttrs | BarAttrs | PieAttrs | FunnelAttrs
   | MoreAttrs | GoodsNavAttrs | GoodsActionsAttrs | GoodsCardAttrs | CouponAttrs | ContactCardAttrs
-  | QrcodeAttrs,
+  | QrcodeAttrs | AreaAttrs | AddressListAttrs | AddressEditAttrs | ContactEdit | ContactList | SubmitBarAttrs,
   children?: ComponentItem[]
 }

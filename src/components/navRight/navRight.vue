@@ -38,6 +38,12 @@
         <qrcode-attrs v-if="current.type === 'qrcode'"></qrcode-attrs>
         <skeleton-attrs v-if="current.type === 'skeleton'"></skeleton-attrs>
         <pagination-attrs v-if="current.type === 'pagination'"></pagination-attrs>
+        <area-attrs v-if="current.type === 'area'"></area-attrs>
+        <contact-edit-attrs v-if="current.type === 'contact-edit'"></contact-edit-attrs>
+        <contact-list-attrs v-if="current.type === 'contact-list'"></contact-list-attrs>
+        <submit-bar-attrs v-if="current.type === 'submit-bar'"></submit-bar-attrs>
+        <address-list-attrs v-if="current.type === 'address-list'"></address-list-attrs>
+        <address-edit-attrs v-if="current.type === 'address-edit'"></address-edit-attrs>
       </template>
       <div v-else>
         <a-result status="404" title="还没有数据喔" sub-title="赶快拖拽组件来生成你的H5页面吧"></a-result>
@@ -82,6 +88,12 @@ import qrcodeAttrs from '../componentAttrs/qrcode/index.vue'
 import emptyAttrs from '../componentAttrs/empty/index.vue'
 import skeletonAttrs from '../componentAttrs/skeleton/index.vue'
 import paginationAttrs from '../componentAttrs/pagination/index.vue'
+import areaAttrs from '../componentAttrs/area/index.vue'
+import contactEditAttrs from '../componentAttrs/contactEdit/index.vue'
+import contactListAttrs from '../componentAttrs/contactList/index.vue'
+import submitBarAttrs from '../componentAttrs/submitBar/index.vue'
+import addressListAttrs from '../componentAttrs/addressList/index.vue'
+import addressEditAttrs from '../componentAttrs/addressEdit/index.vue'
 
 
 

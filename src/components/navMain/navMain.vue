@@ -11,6 +11,7 @@
                 active: activeIndex === index,
                 bottom: (activeIndex === index && item.type === 'tabbar' && (item.attrs as any).fixed)
                   || activeIndex === index && item.type === 'goods-action'
+                  || activeIndex === index && item.type === 'submit-bar'
               }"
               @click="clickItem(item, index)"
             >
@@ -20,7 +21,7 @@
                 v-model:current-rate="item.value"
                 v-bind="{
                   ...item.attrs,
-                  list: item.type !== 'goods-nav' ? [] : (item.attrs as any).list,
+                  list: item.type !== 'goods-nav' && item.type !== 'contact-list' && item.type !== 'address-list' ? [] : (item.attrs as any).list,
                   iconSize: (item.attrs as any).iconSize + 'px',
                   size: item.type === 'switch' || item.type === 'circle' ? (item.attrs as any).size + 'px'
                     : item.type === 'icon' ? (item.attrs as any).size + (item.attrs as any).company : (item.attrs as any).size
@@ -213,7 +214,7 @@ watch(() => currentComponent.value, val => {
     localStorage.setItem('componentList', JSON.stringify(componentList.value))
     store.commit('setComponentList', componentList.value)
   }
-}, { deep: true })
+}, { deep: true, })
 </script>
 
 <style lang='scss' scoped>

@@ -1,5 +1,5 @@
 import { ComponentItem } from '@/types'
-
+import { areaList } from '@vant/area-data'
 
 export const baseComponent: ComponentItem[] = [
   {
@@ -630,6 +630,7 @@ export const chartsComponents: ComponentItem[] = [
 ]
 
 export const goodsComponents: ComponentItem[] = [
+
   {
     type: 'goods-nav',
     icon: 'balance-pay',
@@ -716,7 +717,7 @@ export const goodsComponents: ComponentItem[] = [
   },
   {
     type: 'goods-action',
-    label: '提交订单',
+    label: '订单操作栏',
     icon: 'setting-o',
     attrs: {
       goodsActionOptions: [
@@ -783,18 +784,6 @@ export const goodsComponents: ComponentItem[] = [
     }
   },
   {
-    type: 'contact-card',
-    label: '联系人卡片',
-    icon: 'friends-o',
-    attrs: {
-      type: 'add',
-      name: "cc",
-      tel: "13888888888",
-      editable: false,
-      addText: '添加联系人'
-    }
-  },
-  {
     type: 'qrcode',
     label: '二维码',
     icon: 'qr',
@@ -808,6 +797,163 @@ export const goodsComponents: ComponentItem[] = [
       imgWidth: 40,
       imgHeight: 40,
       backgroundColor: '#fff'
+    }
+  },
+  {
+    type: 'address-list',
+    label: '地址列表',
+    icon: 'location-o',
+    value: '1',
+    field: 'addressList',
+    attrs: {
+      list: [
+        {
+          id: '1',
+          name: '张三',
+          tel: '13000000000',
+          address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室',
+          isDefault: true,
+        },
+        {
+          id: '2',
+          name: '李四',
+          tel: '1310000000',
+          address: '浙江省杭州市拱墅区莫干山路 50 号',
+        },
+      ],
+      disabledList: [
+        {
+          id: '3',
+          name: '王五',
+          tel: '1320000000',
+          address: '浙江省杭州市滨江区江南大道 15 号',
+        },
+      ],
+      disabledText: '以下地址超出配送范围',
+      switchable: true,
+      addButtonText: '新增地址',
+      defaultTagText: '默认',
+    }
+  },
+  {
+    type: 'address-edit',
+    label: '地址编辑',
+    icon: 'warning-o',
+    attrs: {
+      areaList,
+      areaPlaceholder: '选择省 / 市 / 区',
+      addressInfo: {
+        name: '',
+        tel: '',
+        city: '',
+        county: '',
+        province: '',
+        country: '',
+        areaCode: '',
+        addressDetail: ''
+      },
+      showPostal: false,
+      showDelete: false,
+      showSetDefault: false,
+      showArea: true,
+      showDetail: true,
+      disableArea: false,
+      saveButtonText: '保存',
+      deleteButtonText: '删除',
+      isSaving: false,
+      isDeleting: false,
+    }
+  },
+  {
+    type: 'contact-card',
+    label: '联系人卡片',
+    icon: 'friends-o',
+    attrs: {
+      type: 'add',
+      name: "cc",
+      tel: "13888888888",
+      editable: false,
+      addText: '添加联系人'
+    }
+  },
+  {
+    type: 'contact-edit',
+    label: '编辑联系人',
+    icon: 'user-circle-o',
+    attrs: {
+      contactInfo: {
+        name: '',
+        tel: ''
+      },
+      isEdit: false,
+      isSaving: false,
+      isDeleting: false,
+      showSetDefault: false,
+      setDefaultLabel: ''
+    }
+  },
+  {
+    type: 'contact-list',
+    label: '联系人列表',
+    icon: 'friends-o',
+    value: '1',
+    field: 'contactList',
+    attrs: {
+      list: [
+        {
+          id: '1',
+          name: '张三',
+          tel: '13000000000',
+          isDefault: true,
+        },
+        {
+          id: '2',
+          name: '李四',
+          tel: '1310000000',
+          isDefault: false
+        },
+      ],
+      addText: '新建联系人',
+      defaultTagText: '默认'
+    }
+  },
+  {
+    type: 'area',
+    label: '省市区选择',
+    icon: 'envelop-o',
+    value: '',
+    field: 'area',
+    attrs: {
+      title: '',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      areaList,
+      columnsPlaceholder: [],
+      loading: false,
+      readonly: false,
+      columnsNum: '3',
+      visibleItemCount: 6,
+      swipeDuration: 1000,
+    }
+  },
+  {
+    type: 'submit-bar',
+    label: '提交订单栏',
+    icon: 'balance-pay',
+    attrs: {
+      price: 3050,
+      decimalLength: 2,
+      label: '合计：',
+      suffixLabel: '',
+      textAlign: 'right',
+      buttonText: '提交订单',
+      buttonType: 'danger',
+      buttonColor: '',
+      tip: '',
+      currency: '¥',
+      disabled: false,
+      loading: false,
+      safeAreaInsetBottom: true,
     }
   }
 ]

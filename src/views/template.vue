@@ -1,36 +1,21 @@
 <template>
-  <van-search
-    v-model="searchValue"
-    placeholder="请搜索"
-    clearable
-    shape="square"
-    clearIcon="clear"
-    leftIcon="search"
-    :showAction="false"
-    actionText="取消"
-    :disabled="false"
-    :readonly="false"
-    :error="false"
-    inputAlign="left"
-  ></van-search>
+  <van-good-card
+    background="#fafafa"
+    num="2"
+    tag="标签"
+    price="2.00"
+    desc="描述信息"
+    title="商品标题"
+    thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+    originPrice="10.00"
+    currency="￥"
+  ></van-good-card>
 
-  <van-nav-bar
-    title="订单详情"
-    leftText="返回"
-    rightText="更多"
-    leftArrow
-    :border="false"
-    :fixed="false"
-    :placeholder="false"
-    :zIndex="1"
-    :safeAreaInsetTop="false"
-  ></van-nav-bar>
+  <van-contact-card type="add" name="cc" tel="13888888888" :editable="false" addText="添加联系人"></van-contact-card>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 
-let searchValue = ref("")
 </script>
 
 <style scoped lang="scss"></style>
