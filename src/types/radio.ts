@@ -1,12 +1,13 @@
 
 
 export interface RadioAttrs {
-  textPosition?: 'left' | 'right',
+  name?: any,
   direction?: 'vertical' | 'horizontal',
+  shape?: 'round' | 'square',
   disabled?: boolean,
-  iconSize?: string | number,
-  iconName?: string,
-  label?: string | number | boolean,
-  shape?: 'round' | 'button',
-  name?: string
+  labelDisabled?: boolean,
+  labelPosition?: 'left' | 'right',
+  iconSize?: number | string,
+  checkedColor?: string,
+  text?: string,
 }

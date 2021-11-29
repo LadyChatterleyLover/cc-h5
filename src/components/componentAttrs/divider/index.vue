@@ -2,7 +2,7 @@
   <div style="padding: 10px 12px;" v-if="current">
     <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
       <a-form-item label="文本信息">
-        <a-input v-model:value="current.attrs.text" placeholder="请输入按钮文案" allowClear></a-input>
+        <a-input v-model:value="current.attrs.text" placeholder="请输入文本信息" allowClear></a-input>
       </a-form-item>
       <a-form-item label="使用虚线">
         <a-switch v-model:checked="current.attrs.dashed"></a-switch>

@@ -3,6 +3,6 @@ import Line from './line.vue'
 
 export default {
   install(app: App) {
-    app.component('nut-line', Line)
+    app.component('van-line', Line)
   }
 }

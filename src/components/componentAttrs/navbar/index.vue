@@ -4,46 +4,39 @@
       <a-form-item label="标题名称">
         <a-input v-model:value="current.attrs.title" placeholder="请输入标题名称" allowClear></a-input>
       </a-form-item>
-      <a-form-item label="右侧描述">
-        <a-input v-model:value="current.attrs.desc" placeholder="请输入左侧右侧描述" allowClear></a-input>
+      <a-form-item label="左侧文案">
+        <a-input v-model:value="current.attrs.leftText" placeholder="请输入左侧文案" allowClear></a-input>
+      </a-form-item>
+      <a-form-item label="右侧文案">
+        <a-input v-model:value="current.attrs.rightText" placeholder="请输入右侧文案" allowClear></a-input>
       </a-form-item>
       <a-form-item label="左侧箭头">
-        <a-switch v-model:checked="current.attrs.leftShow"></a-switch>
+        <a-switch v-model:checked="current.attrs.leftArrow"></a-switch>
       </a-form-item>
-      <a-form-item label="右侧图标">
-        <a-input
-          v-model:value="current.attrs.icon"
-          placeholder="请输入右侧图标"
-          allowClear
-        ></a-input>
-        <a-button
-          style="margin-top: 20px;"
-          type="primary"
-          @click="clickBtn('icon')"
-          size="small"
-        >选择图标</a-button>
+      <a-form-item label="下边框">
+        <a-switch v-model:checked="current.attrs.border"></a-switch>
       </a-form-item>
-      <a-form-item label="标题图标">
-      <a-input
-          v-model:value="current.attrs.titIcon"
-          placeholder="请输入标题图标"
-          allowClear
-        ></a-input>
-        <a-button
-          style="margin-top: 20px;"
-          type="primary"
-          @click="clickBtn('titIcon')"
-          size="small"
-        >选择图标</a-button>
+      <a-form-item label="固定顶部">
+        <a-switch v-model:checked="current.attrs.fixed"></a-switch>
+      </a-form-item>
+      <a-form-item label="占位元素" v-if="current.attrs.fixed">
+        <a-switch v-model:checked="current.attrs.placeholder"></a-switch>
+      </a-form-item>
+      <a-form-item label="安全区适配">
+        <a-switch v-model:checked="current.attrs.safeAreaInsetTop"></a-switch>
+      </a-form-item>
+      <a-form-item label="元素层级">
+        <a-input-number
+          style="width: 100%"
+          placeholder="请输入元素层级"
+          v-model:value="current.attrs.zIndex"
+        ></a-input-number>
       </a-form-item>
     </a-form>
   </div>
-  <choose-icon v-model:visible="visible" @click="choose"></choose-icon>
 </template>
 
 <script lang='ts' setup>
-import ChooseIcon from '@/components/chooseIcon/chooseIcon.vue'
-import { ComponentItem } from '@/types'
 import { computed, watch, ref } from 'vue'
 import { useStore } from 'vuex'
 
@@ -53,20 +46,6 @@ let current: any = computed(() => store.state.currentComponent)
 
 let labelCol = { span: 6 }
 let wrapperCol = { span: 18 }
-
-let visible = ref<boolean>(false)
-let position = ref<string>('')
-
-
-let clickBtn = (val: string) => {
-  position.value = val
-  visible.value = true
-}
-
-let choose = (item: string) => {
-  (current.value.attrs as any)[position.value] = item
-  position.value = ''
-}
 
 watch(() => current.value, val => {
   localStorage.setItem('currentComponent', JSON.stringify(val))

@@ -1,17 +1,23 @@
 <template>
-  <a-modal v-model:visible="visible" title="选择图标" :footer="null">
-    <div class="container">
-      <div
-        class="item"
-        v-for="(item, index) in icons"
-        :key="index"
-        @click="clickItem(item)"
-      >
-        <div class="text">
-          <nut-icon :name="item" size="20px"></nut-icon>
-        </div>
-        <div class="icon">{{ item }}</div>
-      </div>
+  <a-modal class="cc-h5-template-modal" v-model:visible="visible" title="选择图标" :footer="null">
+    <div class="cc-h5-choose-icon-tab">
+      <a-tabs v-model:activeKey="activeKey">
+        <a-tab-pane :tab="tab.name" :key="i" v-for="(tab, i) in icons">
+          <div class="container">
+            <div
+              class="item"
+              v-for="(item, index) in tab.icons"
+              :key="index"
+              @click="clickItem(item)"
+            >
+              <div class="text">
+                <van-icon :name="item" size="20px"></van-icon>
+              </div>
+              <div class="icon">{{ item }}</div>
+            </div>
+          </div>
+        </a-tab-pane>
+      </a-tabs>
     </div>
   </a-modal>
 </template>
@@ -27,6 +33,7 @@ let props = defineProps({
     default: false
   }
 })
+let activeKey = ref(0)
 
 let emits = defineEmits(['update:visible', 'click'])
 

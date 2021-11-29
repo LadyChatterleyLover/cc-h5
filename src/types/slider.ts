@@ -1,16 +1,17 @@
 import { CSSProperties } from 'vue'
 
 
-export interface RangeAttrs {
+export interface SliderAttrs {
   style?: CSSProperties,
   range?: boolean,
   max?: number | string,
   min?: number | string,
   step?: number | string,
-  disabled?: boolean,
-  hiddenRange?: boolean,
-  hiddenTag?: boolean,
+  barHeight?: number | string,
+  buttonSize?: number | string,
   activeColor?: string,
   inactiveColor?: string,
-  buttonColor?: string,
+  disabled?: boolean,
+  readonly?: boolean,
+  vertical?: boolean
 }

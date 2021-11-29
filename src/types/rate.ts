@@ -5,13 +5,15 @@ export interface RateAttrs {
   style?: CSSProperties,
   value?: number,
   count?: number,
-  iconSize?: number,
-  activeColor?: string,
+  size?: number,
+  color?: string,
   voidColor?: string,
-  uncheckedIcon?: string,
-  checkedIcon?: string,
+  disabledColor?: string,
+  icon?: string,
+  voidIcon?: string,
   allowHalf?: boolean,
   readonly?: boolean,
   disabled?: boolean,
-  spacing?: number
+  touchable?: boolean,
+  gutter?: number
 }

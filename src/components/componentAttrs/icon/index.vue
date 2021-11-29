@@ -27,6 +27,12 @@
           placeholder="请输入图标尺寸"
         ></a-input-number>
       </a-form-item>
+      <a-form-item label="显示红点">
+        <a-switch v-model:checked="current.attrs.dot"></a-switch>
+      </a-form-item>
+      <a-form-item label="徽标内容">
+        <a-input placeholder="请输入徽标内容" v-model:value="current.attrs.badge"></a-input>
+      </a-form-item>
     </a-form>
   </div>
   <choose-icon v-model:visible="visible" @click="choose"></choose-icon>
@@ -62,7 +68,7 @@ watch(() => current.value, val => {
   localStorage.setItem('currentComponent', JSON.stringify(val))
   store.commit('setCurrentComponent', val)
 }, { deep: true })
-</script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </script>
 
 <style lang='scss' scoped>
 </style>

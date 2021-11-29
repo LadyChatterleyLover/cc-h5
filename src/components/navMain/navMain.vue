@@ -7,82 +7,86 @@
             <div
               class="item"
               :class="{
+                padding: item.type === 'slider' || item.type === 'progress',
                 active: activeIndex === index,
-                bottom: (activeIndex === index && item.type === 'tabbar' && (item.attrs as any).bottom)
+                bottom: (activeIndex === index && item.type === 'tabbar' && (item.attrs as any).fixed)
                   || activeIndex === index && item.type === 'goods-action'
               }"
               @click="clickItem(item, index)"
             >
               <component
-                :is="`nut-${item.type}`"
+                :is="`van-${item.type}`"
                 v-model="item.value"
+                v-model:current-rate="item.value"
                 v-bind="{
                   ...item.attrs,
                   list: item.type !== 'goods-nav' ? [] : (item.attrs as any).list,
-                  size: item.type === 'tabbar' ? (item.attrs as any).size + 'px'
+                  iconSize: (item.attrs as any).iconSize + 'px',
+                  size: item.type === 'switch' || item.type === 'circle' ? (item.attrs as any).size + 'px'
                     : item.type === 'icon' ? (item.attrs as any).size + (item.attrs as any).company : (item.attrs as any).size
                 }"
                 :style="{
                   width: (item.attrs as any).width + 'px',
                   height: (item.attrs as any).height + 'px',
+                  buttonSize: (item.attrs as any).buttonSize + 'px',
+                  inputWidth: (item.attrs as any).inputWidth + 'px',
+                  imageSize: (item.attrs as any).imageSize + 'px',
+                  barHeight: (item.attrs as any).barHeight + 'px',
+                  avatarSize: (item.attrs as any).avatarSize + 'px',
+                  rowWidth: (item.attrs as any).rowWidth + '%',
+                  titleWidth: (item.attrs as any).titleWidth + '%',
                 }"
               >
-                <div
-                  v-if="item.type === 'noticebar' && (item.attrs as any).direction === 'vertical'"
-                  v-for="(item,index) in (item.attrs as any).list"
-                  :key="index"
-                >{{ item.text }}</div>
                 <template
                   v-if="item.type === 'button'
                     || item.type === 'divider'
                     || item.type === 'tag'
-                    || (item.type === 'circleprogress' && (item.attrs as any).isAuto)
+                    || item.type === 'notice-bar'
                   "
                 >{{ (item.attrs as any).text }}</template>
                 <template
-                  v-if="item.type === 'swiper' || item.type === 'radiogroup' || item.type === 'tabbar'"
+                  v-if="item.type === 'swipe' || item.type === 'radio-group' || item.type === 'tabbar' || item.type === 'checkbox-group'"
                 >
                   <component
                     v-for="(child, i) in item.children"
-                    :is="`nut-${child.type}`"
+                    :is="`van-${child.type}`"
                     :key="i"
                     v-bind="child.attrs"
                   >
-                    <span v-if="item.type === 'radiogroup'">{{ (child.attrs as any).name }}</span>
+                    <span v-if="item.type === 'tabbar'">{{ (child.attrs as any).name }}</span>
+                    <span
+                      v-if="item.type === 'radio-group' || item.type === 'checkbox-group'"
+                    >{{ (child.attrs as any).text }}</span>
                     <img
                       :style="{ width: (item.attrs as any).width + 'px', height: (item.attrs as any).height + 'px' }"
-                      v-if="child.type === 'swiper-item'"
+                      v-if="child.type === 'swipe-item'"
                       :src="(child.attrs as any)!.src"
                     />
                   </component>
                 </template>
-                <template #leftin v-if="item.type === 'searchbar'">
-                  <nut-icon
-                    :name="(item.attrs as any).leftin.slice(5)"
-                    v-if="(item.attrs as any).leftin && (item.attrs as any).leftin.startsWith('icon-')"
-                  ></nut-icon>
-                  <span v-else>{{ (item.attrs as any).leftin }}</span>
+                <template #left v-if="item.type === 'search'">
+                  <van-icon
+                    :name="(item.attrs as any).left.slice(5)"
+                    v-if="(item.attrs as any).left && (item.attrs as any).left.startsWith('icon-')"
+                  ></van-icon>
+                  <span v-else>{{ (item.attrs as any).left }}</span>
                 </template>
-                <template #leftout v-if="item.type === 'searchbar'">
-                  <nut-icon
-                    :name="(item.attrs as any).leftout.slice(5)"
-                    v-if="(item.attrs as any).leftout && (item.attrs as any).leftout.startsWith('icon-')"
-                  ></nut-icon>
-                  <span v-else>{{ (item.attrs as any).leftout }}</span>
+                <template #label v-if="item.type === 'search' || item.type === 'field'">
+                  <span>{{ (item.attrs as any).label }}</span>
                 </template>
-                <template #rightin v-if="item.type === 'searchbar'">
-                  <nut-icon
-                    :name="(item.attrs as any).rightin.slice(5)"
-                    v-if="(item.attrs as any).rightin && (item.attrs as any).rightin.startsWith('icon-')"
-                  ></nut-icon>
-                  <span v-else>{{ (item.attrs as any).rightin }}</span>
+                <template #left-icon v-if="item.type === 'search' || item.type === 'field'">
+                  <van-icon
+                    :name="(item.attrs as any).leftIcon.slice(5)"
+                    v-if="(item.attrs as any).leftIcon && (item.attrs as any).leftIcon.startsWith('icon-')"
+                  ></van-icon>
+                  <span v-else>{{ (item.attrs as any).leftIcon }}</span>
                 </template>
-                <template #rightout v-if="item.type === 'searchbar'">
-                  <nut-icon
-                    :name="(item.attrs as any).rightout.slice(5)"
-                    v-if="(item.attrs as any).rightout && (item.attrs as any).rightout.startsWith('icon-')"
-                  ></nut-icon>
-                  <span v-else>{{ (item.attrs as any).rightout }}</span>
+                <template #right-icon v-if="item.type === 'search' || item.type === 'field'">
+                  <van-icon
+                    :name="(item.attrs as any).rightIcon.slice(5)"
+                    v-if="(item.attrs as any).rightIcon && (item.attrs as any).rightIcon.startsWith('icon-')"
+                  ></van-icon>
+                  <span v-else>{{ (item.attrs as any).rightIcon }}</span>
                 </template>
               </component>
             </div>
@@ -103,6 +107,7 @@
 import { computed, ComputedRef, watch, ref } from 'vue'
 import { useStore } from 'vuex'
 import { ComponentItem } from '@/types'
+import { message } from 'ant-design-vue'
 
 let store = useStore()
 
@@ -111,7 +116,6 @@ let currentComponent = computed(() => store.state.currentComponent)
 let activeIndex = computed(() => store.state.activeIndex)
 let editorItem = ref<HTMLDivElement | null>(null)
 
-let value = ref(40)
 let dragover = (e: DragEvent) => {
   e.preventDefault()
 }
@@ -143,32 +147,43 @@ let clickItem = (item: ComponentItem, index: number) => {
 }
 
 let copy = (item: ComponentItem) => {
-  componentList.value.push(item)
-  localStorage.setItem('currentComponent', JSON.stringify(item))
-  store.commit('setCurrentComponent', item)
-  localStorage.setItem('componentList', JSON.stringify(componentList.value))
-  store.commit('setComponentList', componentList.value)
-  localStorage.setItem('activeIndex', String(componentList.value.length - 1))
-  store.commit('setActiveIndex', componentList.value.length - 1)
-}
-
-let del = (index: number) => {
-  if (componentList.value.length !== 1) {
-    componentList.value.splice(index, 1)
-    localStorage.setItem('currentComponent', JSON.stringify(componentList.value[componentList.value.length - 1]))
-    store.commit('setCurrentComponent', componentList.value[componentList.value.length - 1])
+  if (!currentComponent.value) {
+    message.warning('请先选择组件')
+    return
+  } else {
+    componentList.value.push(item)
+    localStorage.setItem('currentComponent', JSON.stringify(item))
+    store.commit('setCurrentComponent', item)
     localStorage.setItem('componentList', JSON.stringify(componentList.value))
     store.commit('setComponentList', componentList.value)
     localStorage.setItem('activeIndex', String(componentList.value.length - 1))
     store.commit('setActiveIndex', componentList.value.length - 1)
-  } else {
-    store.commit('setComponentList', null)
-    store.commit('setCurrentComponent', null)
-    store.commit('setActiveIndex', null)
-    localStorage.removeItem('componentList')
-    localStorage.removeItem('currentComponent')
-    localStorage.removeItem('activeIndex')
   }
+}
+
+let del = (index: number) => {
+  if (!currentComponent.value) {
+    message.warning('请先选择组件')
+    return
+  } else {
+    if (componentList.value.length !== 1) {
+      componentList.value.splice(index, 1)
+      localStorage.setItem('currentComponent', JSON.stringify(componentList.value[componentList.value.length - 1]))
+      store.commit('setCurrentComponent', componentList.value[componentList.value.length - 1])
+      localStorage.setItem('componentList', JSON.stringify(componentList.value))
+      store.commit('setComponentList', componentList.value)
+      localStorage.setItem('activeIndex', String(componentList.value.length - 1))
+      store.commit('setActiveIndex', componentList.value.length - 1)
+    } else {
+      store.commit('setComponentList', null)
+      store.commit('setCurrentComponent', null)
+      store.commit('setActiveIndex', null)
+      localStorage.removeItem('componentList')
+      localStorage.removeItem('currentComponent')
+      localStorage.removeItem('activeIndex')
+    }
+  }
+
 }
 
 let clickAction = ({ key }: { key: string }) => {
@@ -245,8 +260,11 @@ watch(() => currentComponent.value, val => {
   z-index: 999;
   margin-bottom: 0 !important;
   border: 2px solid blue;
-  .nut-tabbar {
+  .van-tabbar {
     background: transparent !important;
   }
+}
+.padding {
+  padding: 15px 0;
 }
 </style>

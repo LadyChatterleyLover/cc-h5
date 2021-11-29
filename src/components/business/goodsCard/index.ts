@@ -3,6 +3,6 @@ import GoodsCard from './goodsCard.vue'
 
 export default {
   install(app: App) {
-    app.component('nut-goods-card', GoodsCard)
+    app.component('van-good-card', GoodsCard)
   }
 }

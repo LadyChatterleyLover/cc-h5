@@ -3,6 +3,6 @@ import Funnel from './funnel.vue'
 
 export default {
   install(app: App) {
-    app.component('nut-funnel', Funnel)
+    app.component('van-funnel', Funnel)
   }
 }

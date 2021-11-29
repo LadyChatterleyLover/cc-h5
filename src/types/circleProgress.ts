@@ -1,19 +1,17 @@
 import { CSSProperties } from 'vue'
 
-export interface ProgressOption {
-  radius?: number,
-  strokeOutWidth?: number,
-  backColor?: string,
-  progressColor?: string,
-  text?: string,
-  width?: number,
-  height?: number
-}
 
 export interface CircleProgressAttrs {
   style?: CSSProperties,
-  progress?: number | string,
-  strokeInnerWidth?: number | string,
-  isAuto?: boolean,
-  progressOption?: ProgressOption
+  rate?: number,
+  size?: number | string,
+  color?: string,
+  layerColor?: string,
+  fill?: string,
+  speed?: number | string,
+  text?: string,
+  strokeWidth?: number | string,
+  strokeLinecap?: 'round' | 'square' | 'butt',
+  clockwise?: boolean,
+  startPosition?: 'top' | 'bottom' | 'left' | 'right'
 }

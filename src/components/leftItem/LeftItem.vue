@@ -8,7 +8,7 @@
       @dragstart="dragStart($event, item, index)"
     >
       <div class="icon">
-        <nut-icon :name="item.icon" size="12px"></nut-icon>
+        <van-icon :name="item.icon" size="16px"></van-icon>
       </div>
       <div>{{ item.label }}</div>
     </div>

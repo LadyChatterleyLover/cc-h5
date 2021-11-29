@@ -1,14 +1,20 @@
 <template>
   <div style="padding: 10px 12px;" v-if="current">
     <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
-      <a-form-item label="按钮类型">
+      <a-form-item label="标签类型">
         <a-select v-model:value="current.attrs.type">
           <a-select-option value="default">默认按钮</a-select-option>
           <a-select-option value="primary">主要按钮</a-select-option>
-          <a-select-option value="info">信息按钮</a-select-option>
           <a-select-option value="danger">危险按钮</a-select-option>
           <a-select-option value="warning">警告按钮</a-select-option>
           <a-select-option value="success">成功按钮</a-select-option>
+        </a-select>
+      </a-form-item>
+      <a-form-item label="标签尺寸">
+        <a-select v-model:value="current.attrs.size">
+          <a-select-option value>正常</a-select-option>
+          <a-select-option value="medium">中号</a-select-option>
+          <a-select-option value="large">大号</a-select-option>
         </a-select>
       </a-form-item>
       <a-form-item label="标签颜色">

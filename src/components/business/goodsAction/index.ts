@@ -3,6 +3,6 @@ import GoodsAction from './goodsAction.vue'
 
 export default {
   install(app: App) {
-    app.component('nut-goods-action', GoodsAction)
+    app.component('van-goods-action', GoodsAction)
   }
 }

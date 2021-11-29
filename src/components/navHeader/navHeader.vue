@@ -22,7 +22,7 @@
   <a-modal v-model:visible="previewVisible" title="真机测试" :footer="null">
     <div class="content">
       <h3>请扫描下面二维码预览</h3>
-      <nut-qrcode value="http://169.254.63.127:3000/#/preview" :width="200"></nut-qrcode>
+      <van-qrcode value="http://169.254.63.127:3000/#/preview" :width="200"></van-qrcode>
     </div>
   </a-modal>
 

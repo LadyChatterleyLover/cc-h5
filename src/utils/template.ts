@@ -24,7 +24,7 @@ const generateSlot = (attrs: any, name: string) => {
     if (attrs[name].startsWith('icon-')) {
       slots += `
       <template #${name}>
-        <nut-icon name="${attrs[name].slice(5)}"></nut-icon>
+        <van-icon name="${attrs[name].slice(5)}"></van-icon>
       </template>`
     } else {
       slots += `
@@ -81,25 +81,25 @@ let ${i} = ref(${jsonReplace(JSON.stringify(cloneAttrs[i]))})`
           }
           if (item.type === 'tabbar') {
             childStr += `
-          <nut-${child.type} ${childAttrs}>
-          </nut-${child.type}>`
+          <van-${child.type} ${childAttrs}>
+          </van-${child.type}>`
           } else {
             childStr += `
-          <nut-${child.type}>
+          <van-${child.type}>
             <img style="width: ${cloneAttrs.width}px;height:${cloneAttrs.height}px;" src="${(child.attrs as any).src}">
-          </nut-${child.type}>
+          </van-${child.type}>
             `
           }
           childAttrs = ''
         })
       }
       template += `
-    <nut-${item.type} 
+    <van-${item.type} 
      ${item.field ? 'v-model=' + `"${item.field}"` : ''}
      ${attrs}>
      ${childStr}
      ${item.type === 'searchbar' ? slots : ''}
-    </nut-${item.type}>
+    </van-${item.type}>
     `
       script += `${objStr}${item.field ? `
     let ${item.field} = ref(${item.value ? item.value : '""'})` : ''}`

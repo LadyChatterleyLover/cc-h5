@@ -4,8 +4,10 @@ export interface SwitchAttrs {
   style?: CSSProperties,
   value?: boolean,
   disable?: boolean,
+  loading?: boolean,
+  size?: number | string,
   activeColor?: string,
   inactiveColor?: string,
-  activeText?: string,
-  inactiveText?: string,
+  activeValue?: any,
+  inactiveValue?: any,
 }

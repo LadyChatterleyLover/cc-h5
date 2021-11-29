@@ -5,16 +5,43 @@ export const baseComponent: ComponentItem[] = [
   {
     type: 'icon',
     label: '图标',
-    icon: 'ask',
+    icon: 'info-o',
     attrs: {
-      name: 'home',
-      color: '',
+      name: 'info-o',
+      color: 'inherit',
       company: 'px',
-      size: '',
+      size: '20',
+      dot: false,
+      badge: ''
     }
   },
   {
-    type: 'searchbar',
+    type: 'button',
+    label: '按钮',
+    icon: 'setting-o',
+    attrs: {
+      text: '按钮',
+      type: 'default',
+      size: 'normal',
+      square: false,
+      round: false,
+      hairline: false,
+      color: '',
+      plain: false,
+      disabled: false,
+      block: false,
+      loading: false,
+      icon: '',
+      iconPosition: 'left',
+      loadingText: '',
+      loadingType: 'circular',
+      url: '',
+      to: '',
+      replace: false
+    }
+  },
+  {
+    type: 'search',
     label: '搜索框',
     icon: 'search',
     value: '',
@@ -22,127 +49,218 @@ export const baseComponent: ComponentItem[] = [
     attrs: {
       placeholder: '请搜索',
       background: '',
-      maxLength: 9999,
+      maxLength: '',
       clearable: true,
-      inputType: 'text',
-      inputBackground: '#f7f7f7',
-      rightout: '取消'
+      shape: 'square',
+      clearIcon: 'clear',
+      leftIcon: 'search',
+      rightIcon: '',
+      left: '',
+      action: '',
+      label: '',
+      showAction: false,
+      actionText: '取消',
+      disabled: false,
+      readonly: false,
+      error: false,
+      errorMessage: '',
+      inputAlign: 'left',
     }
   },
   {
-    type: 'input',
+    type: 'field',
     value: '',
     label: '输入框',
     icon: 'edit',
     field: 'value',
     attrs: {
       placeholder: '请输入',
-      maxLength: '',
+      maxlength: '',
+      size: '',
       type: 'text',
       label: '文本',
-      requireShow: false,
+      required: false,
       disabled: false,
       readonly: false,
       clearable: true,
-      textAlign: 'left'
+      colon: false,
+      isLink: false,
+      showWordLimit: false,
+      border: false,
+      error: false,
+      errorMessage: '',
+      labelAlign: 'left',
+      inputAlign: 'left',
+      leftIcon: '',
+      rightIcon: '',
     }
   },
   {
-    type: 'textarea',
-    icon: 'top',
-    label: '文本域',
-    value: '',
-    attrs: {
-      placeholder: '请输入内容',
-      maxLength: '',
-      rows: 2,
-      limitShow: false,
-      autosize: false,
-      textAlign: 'left',
-      readonly: false,
-      disabled: false
-    }
-  },
-  {
-    type: 'radiogroup',
+    type: 'radio-group',
     label: '单选框',
-    icon: 'check-normal',
+    icon: 'passed',
     value: '1',
     field: 'radio',
     attrs: {
-      textPosition: 'right',
       direction: 'vertical',
+      disabled: false,
+      iconSize: 20,
+      checkedColor: '#1989fa'
     },
     children: [
       {
         type: 'radio',
         attrs: {
-          label: '1',
-          text: '选项1',
-          disabled: false,
-          iconSize: 18,
-
+          name: '1',
           shape: 'round',
-          name: '选项1'
+          disabled: false,
+          labelDisabled: false,
+          labelPosition: 'left',
+          iconSize: 20,
+          checkedColor: '#1989fa',
+          text: '选项1'
         }
       },
       {
         type: 'radio',
         attrs: {
-          label: '2',
-          text: '选项1',
-          disabled: false,
-          iconSize: 18,
-          iconName: 'check-normal',
+          name: '2',
           shape: 'round',
-          name: '选项2'
+          disabled: false,
+          labelDisabled: false,
+          labelPosition: 'left',
+          iconSize: 20,
+          checkedColor: '#1989fa',
+          text: '选项2'
         }
       },
       {
         type: 'radio',
         attrs: {
-          label: '3',
-          text: '选项1',
-          disabled: false,
-          iconSize: 18,
-          iconName: 'check-normal',
+          name: '3',
           shape: 'round',
-          name: '选项3'
+          disabled: false,
+          labelDisabled: false,
+          labelPosition: 'left',
+          iconSize: 20,
+          checkedColor: '#1989fa',
+          text: '选项3'
         }
-      }
+      },
     ]
   },
   {
-    type: 'swiper',
-    label: '轮播图',
-    icon: 'horizontal',
+    type: 'checkbox-group',
+    icon: 'passed',
+    label: '复选框',
+    value: ['1'],
+    field: 'checkbox',
     attrs: {
-      width: 375,
-      height: 150,
-      direction: 'horizontal',
-      paginationVisible: false,
-      paginationColor: '#fff',
-      loop: true,
-      duration: 500,
-      autoPlay: 5000,
-      initPage: 0,
-      touchable: true
+      direction: 'vertical',
+      disabled: false,
+      iconSize: 20,
+      checkedColor: '#1989fa'
     },
     children: [
       {
-        type: 'swiper-item',
+        type: 'checkbox',
+        attrs: {
+          name: '1',
+          shape: 'round',
+          disabled: false,
+          labelDisabled: false,
+          labelPosition: 'left',
+          iconSize: 20,
+          checkedColor: '#1989fa',
+          text: '选项1'
+        }
+      },
+      {
+        type: 'checkbox',
+        attrs: {
+          name: '2',
+          shape: 'round',
+          disabled: false,
+          labelDisabled: false,
+          labelPosition: 'left',
+          iconSize: 20,
+          checkedColor: '#1989fa',
+          text: '选项2'
+        }
+      },
+      {
+        type: 'checkbox',
+        attrs: {
+          name: '3',
+          shape: 'round',
+          disabled: false,
+          labelDisabled: false,
+          labelPosition: 'left',
+          iconSize: 20,
+          checkedColor: '#1989fa',
+          text: '选项3'
+        }
+      },
+    ]
+  },
+  {
+    type: 'stepper',
+    value: 1,
+    field: 'stepper',
+    icon: 'plus',
+    label: '步进器',
+    attrs: {
+      min: 1,
+      max: 100,
+      step: 1,
+      name: '',
+      inputWidth: 32,
+      buttonSize: 28,
+      decimalLength: '',
+      theme: '',
+      placeholder: '',
+      integer: false,
+      disabled: false,
+      disablePlus: false,
+      disableMinus: false,
+      disableInput: false,
+      showPlus: true,
+      showMinus: true,
+      showInput: true,
+      longPress: true,
+    }
+  },
+  {
+    type: 'swipe',
+    label: '轮播图',
+    icon: 'photo-o',
+    attrs: {
+      width: 375,
+      height: 150,
+      autoplay: 3000,
+      duration: 500,
+      initialSwipe: 0,
+      loop: true,
+      showIndicators: true,
+      vertical: false,
+      touchable: true,
+      indicatorColor: '#1989fa'
+    },
+    children: [
+      {
+        type: 'swipe-item',
         attrs: {
           src: 'https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg'
         }
       },
       {
-        type: 'swiper-item',
+        type: 'swipe-item',
         attrs: {
           src: 'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg'
         }
       },
       {
-        type: 'swiper-item',
+        type: 'swipe-item',
         attrs: {
           src: 'https://storage.360buyimg.com/jdc-article/welcomenutui.jpg'
         }
@@ -150,100 +268,51 @@ export const baseComponent: ComponentItem[] = [
     ]
   },
   {
-    type: 'noticebar',
+    type: 'notice-bar',
     label: '通知栏',
-    icon: 'comment',
+    icon: 'bullhorn-o',
     attrs: {
-      direction: 'across',
-      text: "华为畅享9新品即将上市，活动期间0元预约可参与抽奖，赢HUAWEI WATCH等好礼，更多产品信息请持续关注！",
-      closeMode: false,
-      leftIcon: '',
-      color: 'rgb(217, 80, 11)',
-      background: 'rgb(251, 248, 220)',
+      mode: '',
+      text: "在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准",
+      leftIcon: 'volume-o',
+      color: '#ed6a0c',
+      background: '#fffbe8',
       delay: 1,
       scrollable: true,
-      speed: 50,
-      list: [
-        {
-          text: '惊喜红包免费领',
-        }, {
-          text: '爆款准点秒'
-        },
-        {
-          text: '买超值优惠'
-        },
-        {
-          text: '赢百万京豆'
-        }],
-      standTime: 1000,
-      complexAm: false,
-      height: 40,
+      wrapable: false,
+      speed: 60,
     }
   },
   {
-    type: 'navbar',
+    type: 'nav-bar',
     label: '头部导航',
-    icon: 'home',
+    icon: 'arrow-left',
     attrs: {
       title: '订单详情',
-      desc: '',
-      leftShow: true,
-      icon: 'share',
-      titIcon: '',
-    }
-  },
-  {
-    type: 'video',
-    label: '视频',
-    icon: 'play-circle-fill',
-    attrs: {
-      source: {
-        src: 'https://storage.jd.com/about/big-final.mp4Expires=3730193075&AccessKey=3LoYX1dQWa6ZXzQl&Signature=ViMFjz%2BOkBxS%2FY1rjtUVqbopbJI%3D',
-      },
-      options: {
-        autoplay: false,
-        poster: '',
-        loop: false,
-        controls: true,
-        muted: false,
-        volume: 0.5,
-        disabled: false,
-        playsinline: false
-      }
-    }
-  },
-  {
-    type: 'button',
-    label: '按钮',
-    icon: 'setting',
-    attrs: {
-      text: '按钮',
-      type: 'default',
-      size: 'normal',
-      shape: 'square',
-      color: '',
-      plain: false,
-      disabled: false,
-      block: false,
-      loading: false,
-      icon: '',
+      leftText: '返回',
+      rightText: '更多',
+      leftArrow: true,
+      border: false,
+      fixed: false,
+      placeholder: false,
+      zIndex: 1,
+      safeAreaInsetTop: false
     }
   },
   {
     type: 'avatar',
     label: '头像',
-    icon: 'check-normal',
+    icon: 'user-o',
     attrs: {
-      icon: 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png',
-      bgColor: '',
-      shape: 'round',
-      size: 'normal'
+      src: 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png',
+      round: true,
+      size: ''
     }
   },
   {
-    type: 'range',
+    type: 'slider',
     label: '滑块',
-    icon: 'mask-close',
+    icon: 'revoke',
     value: 0,
     attrs: {
       range: false,
@@ -251,11 +320,12 @@ export const baseComponent: ComponentItem[] = [
       min: 0,
       step: 1,
       disabled: false,
-      hiddenRange: false,
-      hiddenTag: false,
-      activeColor: 'rgba(250, 44, 25, 1)',
-      inactiveColor: 'rgba(255, 163, 154, 1)',
-      buttonColor: 'rgba(250, 44, 25, 1)',
+      activeColor: '#1989fa',
+      inactiveColor: '#e5e5e5',
+      buttonSize: 24,
+      barHeight: 2,
+      readonly: false,
+      vertical: false
     }
   },
   {
@@ -270,78 +340,64 @@ export const baseComponent: ComponentItem[] = [
     }
   },
   {
-    type: 'price',
-    label: '价格',
-    icon: 'order',
-    attrs: {
-      price: 0,
-      needSymbol: true,
-      symbol: '¥',
-      decimalDigits: 2,
-      thousands: false,
-      position: 'before',
-      size: 'normal'
-    }
-  },
-  {
     type: 'tabbar',
     label: '标签栏',
-    icon: 'category',
+    icon: 'sign',
+    value: 0,
     attrs: {
       bottom: true,
       size: '20',
-      unactiveColor: '#7d7e80',
-      activeColor: '#1989fa'
+      inactiveColor: '#7d7e80',
+      activeColor: '#1989fa',
+      route: false,
+      fixed: false,
+      border: false,
+      placeholder: false,
+      safeAreaInsetBottom: false,
     },
     children: [
       {
         type: 'tabbar-item',
         attrs: {
-          tabTitle: '首页',
-          icon: 'home',
+          name: '首页',
+          icon: 'home-o',
           href: '',
           to: '',
-          num: ''
+          badge: '',
+          dot: false
         }
       },
       {
         type: 'tabbar-item',
         attrs: {
-          tabTitle: '分类',
-          icon: 'category',
+          name: '分类',
+          icon: 'apps-o',
           href: '',
           to: '',
-          num: ''
+          badge: '',
+          dot: false
         }
       },
       {
         type: 'tabbar-item',
         attrs: {
-          tabTitle: '发现',
-          icon: 'find',
+          name: '购物车',
+          icon: 'cart-o',
           href: '',
           to: '',
-          num: ''
+          badge: '',
+          dot: false
         }
       },
       {
         type: 'tabbar-item',
         attrs: {
-          tabTitle: '购物车',
-          icon: 'cart',
+          name: '我的',
+          icon: 'user-o',
           href: '',
           to: '',
-          num: ''
-        }
-      },
-      {
-        type: 'tabbar-item',
-        attrs: {
-          tabTitle: '我的',
-          icon: 'my',
-          href: '',
-          to: '',
-          num: ''
+          badge: '',
+          dot: false
         }
       }
     ]
@@ -349,9 +405,10 @@ export const baseComponent: ComponentItem[] = [
   {
     type: 'tag',
     label: '标签',
-    icon: 'success',
+    icon: 'label-o',
     attrs: {
       text: '标签',
+      size: '',
       type: 'default',
       color: '',
       textColor: 'white',
@@ -366,76 +423,122 @@ export const baseComponent: ComponentItem[] = [
     label: '评分',
     value: 3,
     field: 'rate',
-    icon: 'star-n',
+    icon: 'star-o',
     attrs: {
       count: 5,
-      iconSize: 18,
-      activeColor: '#fa200c',
-      voidColor: '#ccc',
-      uncheckedIcon: 'star-n',
-      checkedIcon: 'star-fill-n',
+      size: 20,
+      color: '#ee0a24',
+      voidColor: '#c8c9cc',
+      disabledColor: '#c8c9cc',
+      icon: 'star',
+      voidIcon: 'star-o',
       allowHalf: false,
       readonly: false,
       disabled: false,
-      spacing: 20
+      touchable: true,
+      gutter: 4
     }
   },
   {
     type: 'switch',
     label: '开关',
-    icon: 'retweet',
+    icon: 'eye-o',
+    value: false,
     attrs: {
-      value: false,
-      disable: false,
+      disabled: false,
+      loading: false,
+      size: 20,
       activeColor: '#fa2c19',
       inactiveColor: '#ebebeb',
-      activeText: '',
-      inactiveText: '',
+      activeValue: true,
+      inactiveValue: false,
     }
   },
   {
     type: 'progress',
     label: '进度条',
-    icon: 'arrow-right',
+    icon: 'exchange',
     attrs: {
       percentage: 60,
-      strokeColor: '#f30',
       strokeWidth: '10',
-      size: 'base',
-      showText: true,
-      textInside: false,
-      textColor: '#333',
-      status: '',
-      iconName: 'checked',
-      iconColor: '#439422'
+      color: '#1989fa',
+      trackColor: '#e5e5e5',
+      pivotColor: '#1989fa',
+      textColor: 'white',
+      inactive: false,
+      showPivot: true,
+      pivotText: '',
     }
   },
   {
-    type: 'circleprogress',
+    type: 'circle',
     label: '环形进度条',
-    icon: 'refresh2',
+    icon: 'replay',
+    value: 60,
+    field: 'circle',
     attrs: {
-      width: 120,
-      height: 120,
-      progress: 60,
-      strokeInnerWidth: 10,
-      isAuto: false,
-      text: '自定义',
-      progressOption: {
-        radius: 50,
-        strokeOutWidth: 10,
-        backColor: '#d9d9d9',
-        progressColor: 'red'
-      }
+      rate: 60,
+      size: '100',
+      color: '#1989fa',
+      layerColor: '#fff',
+      fill: 'none',
+      speed: 0,
+      text: '',
+      strokeWidth: 40,
+      strokeLinecap: 'round',
+      clockwise: true,
+      startPosition: 'top'
     }
   },
+  {
+    type: 'empty',
+    label: '空状态',
+    icon: 'close',
+    attrs: {
+      image: 'default',
+      imageSize: '',
+      description: ''
+    }
+  },
+  {
+    type: 'skeleton',
+    label: '骨架屏',
+    icon: 'font-o',
+    attrs: {
+      row: 3,
+      title: false,
+      avatar: false,
+      animate: false,
+      round: false,
+      rowWidth: 100,
+      titleWidth: 40,
+      avatarSize: 32,
+      avatarShape: 'round'
+    }
+  },
+  {
+    type: 'pagination',
+    label: '分页',
+    icon: 'aim',
+    value: 1,
+    field: 'pagination',
+    attrs: {
+      mode: 'multi',
+      prevText: '上一页',
+      nextText: '下一页',
+      totalItems: 100,
+      itemsPerPage: 10,
+      showPageSize: 5,
+      forceEllipses: false,
+    }
+  }
 ]
 
 export const chartsComponents: ComponentItem[] = [
   {
     type: 'line',
     label: '折线图',
-    icon: 'marshalling',
+    icon: 'bar-chart-o',
     attrs: {
       width: 375,
       height: 300,
@@ -465,7 +568,7 @@ export const chartsComponents: ComponentItem[] = [
   {
     type: 'bar',
     label: '柱状图',
-    icon: 'microphone',
+    icon: 'chart-trending-o',
     attrs: {
       width: 375,
       height: 300,
@@ -493,7 +596,7 @@ export const chartsComponents: ComponentItem[] = [
   {
     type: 'funnel',
     label: '漏斗图',
-    icon: 'microphone',
+    icon: 'filter-o',
     attrs: {
       width: 375,
       height: 300,
@@ -510,7 +613,7 @@ export const chartsComponents: ComponentItem[] = [
   {
     type: 'pie',
     label: '饼图',
-    icon: 'microphone',
+    icon: 'points',
     attrs: {
       width: 375,
       height: 300,
@@ -529,7 +632,7 @@ export const chartsComponents: ComponentItem[] = [
 export const goodsComponents: ComponentItem[] = [
   {
     type: 'goods-nav',
-    icon: 'category',
+    icon: 'balance-pay',
     label: '商品导航',
     attrs: {
       rowNum: 5,
@@ -588,7 +691,7 @@ export const goodsComponents: ComponentItem[] = [
   {
     type: 'more',
     label: '更多',
-    icon: 'more-s',
+    icon: 'more-o',
     attrs: {
       leftOptions: {
         style: {
@@ -614,19 +717,19 @@ export const goodsComponents: ComponentItem[] = [
   {
     type: 'goods-action',
     label: '提交订单',
-    icon: 'setting',
+    icon: 'setting-o',
     attrs: {
       goodsActionOptions: [
         {
           text: '首页',
-          icon: 'home',
+          icon: 'home-o',
           dot: false,
           info: '',
           infoColor: 'red'
         },
         {
           text: '收藏',
-          icon: 'heart1',
+          icon: 'star-o',
           dot: false,
           info: '',
           infoColor: 'red'
@@ -652,9 +755,9 @@ export const goodsComponents: ComponentItem[] = [
     }
   },
   {
-    type: 'goods-card',
+    type: 'good-card',
     label: '商品卡片',
-    icon: 'comment',
+    icon: 'comment-o',
     attrs: {
       background: '#fafafa',
       num: "2",
@@ -668,9 +771,9 @@ export const goodsComponents: ComponentItem[] = [
     }
   },
   {
-    type: 'coupon',
+    type: 'coupons',
     label: '优惠券',
-    icon: 'order',
+    icon: 'orders-o',
     attrs: {
       background: '#e4a216',
       amount: 50,
@@ -682,20 +785,19 @@ export const goodsComponents: ComponentItem[] = [
   {
     type: 'contact-card',
     label: '联系人卡片',
-    icon: 'my',
+    icon: 'friends-o',
     attrs: {
       type: 'add',
       name: "cc",
       tel: "13888888888",
       editable: false,
-      addText: '添加联系人',
-      icon: 'my'
+      addText: '添加联系人'
     }
   },
   {
     type: 'qrcode',
     label: '二维码',
-    icon: 'scan',
+    icon: 'qr',
     attrs: {
       value: 'https://www.baidu.com',
       errorCorrectionLevel: 'H',

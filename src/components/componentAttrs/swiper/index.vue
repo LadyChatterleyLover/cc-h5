@@ -23,32 +23,29 @@
       <a-form-item label="高度">
         <a-input-number style="width: 100%;" :min="0" v-model:value="current.attrs.height"></a-input-number>
       </a-form-item>
+      <a-form-item label="轮播时长">
+        <a-input-number style="width: 100%;" :min="0" v-model:value="current.attrs.autoplay"></a-input-number>
+      </a-form-item>
       <a-form-item label="动画时长">
         <a-input-number style="width: 100%;" :min="0" v-model:value="current.attrs.duration"></a-input-number>
       </a-form-item>
-      <a-form-item label="轮播时长">
-        <a-input-number style="width: 100%;" :min="0" v-model:value="current.attrs.autoPlay"></a-input-number>
-      </a-form-item>
       <a-form-item label="初始化索引">
-        <a-input-number style="width: 100%;" :min="0" v-model:value="current.attrs.initPage"></a-input-number>
+        <a-input-number style="width: 100%;" :min="0" v-model:value="current.attrs.initialSwipe"></a-input-number>
       </a-form-item>
       <a-form-item label="循环播放">
         <a-switch v-model:checked="current.attrs.loop"></a-switch>
       </a-form-item>
       <a-form-item label="显示指示点">
-        <a-switch v-model:checked="current.attrs.paginationVisible"></a-switch>
+        <a-switch v-model:checked="current.attrs.showIndicators"></a-switch>
+      </a-form-item>
+      <a-form-item label="指示点颜色" v-if="current.attrs.showIndicators">
+        <color-picker v-model:pureColor="current.attrs.indicatorColor"></color-picker>
+      </a-form-item>
+      <a-form-item label="竖向轮播">
+        <a-switch v-model:checked="current.attrs.vertical"></a-switch>
       </a-form-item>
       <a-form-item label="触摸滑动">
         <a-switch v-model:checked="current.attrs.touchable"></a-switch>
-      </a-form-item>
-      <a-form-item label="指示点颜色" v-if="current.attrs.paginationVisible">
-        <color-picker v-model:pureColor="current.attrs.paginationColor"></color-picker>
-      </a-form-item>
-      <a-form-item label="轮播方向">
-        <a-select v-model:value="current.attrs.direction">
-          <a-select-option value="horizontal">水平</a-select-option>
-          <a-select-option value="vertical">垂直</a-select-option>
-        </a-select>
       </a-form-item>
     </a-form>
   </div>
@@ -57,7 +54,7 @@
 <script lang='ts' setup>
 import { computed, watch } from 'vue'
 import { useStore } from 'vuex'
-import {  MinusOutlined } from '@ant-design/icons-vue'
+import { MinusOutlined } from '@ant-design/icons-vue'
 import { ComponentItem } from '@/types'
 
 let store = useStore()

@@ -5,13 +5,12 @@ export interface SwiperAttrs {
   style?: CSSProperties,
   width?: number | string,
   height?: number | string,
-  direction?: 'horizontal' | 'vertical',
-  paginationVisible?: boolean,
-  paginationColor?: string,
-  loop?: boolean,
+  autoplay?: number | string,
   duration?: number | string,
-  autoPlay?: number,
-  initPage?: number,
+  initialSwipe?: number | string,
+  loop?: boolean,
+  showIndicators?: boolean,
+  vertical?: boolean,
   touchable?: boolean,
-  src?: string
+  indicatorColor?: string
 }

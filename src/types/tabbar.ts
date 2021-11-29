@@ -1,12 +1,18 @@
 
 export interface TabbarAttrs {
   bottom?: boolean,
-  size?: string,
-  unactiveColor?: string,
+  inactiveColor?: string,
   activeColor?: string,
-  tabTitle?: string,
+  route?: boolean,
+  fixed?: boolean,
+  border?: boolean,
+  placeholder?: boolean,
+  safeAreaInsetBottom?: boolean,
+  name?: string,
   icon?: string,
   href?: string,
   to?: string,
-  num?: string
+  badge?: string
+  dot?: boolean,
+  replace?: boolean
 }

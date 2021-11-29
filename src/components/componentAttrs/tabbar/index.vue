@@ -5,13 +5,19 @@
         <color-picker v-model:pureColor="current.attrs.activeColor"></color-picker>
       </a-form-item>
       <a-form-item label="未激活颜色">
-        <color-picker v-model:pureColor="current.attrs.unactiveColor"></color-picker>
+        <color-picker v-model:pureColor="current.attrs.inactiveColor"></color-picker>
       </a-form-item>
-      <a-form-item label="图标尺寸">
-        <a-input-number style="width: 100%" v-model:value="current.attrs.size"></a-input-number>
+      <a-form-item label="路由模式">
+        <a-switch v-model:checked="current.attrs.route"></a-switch>
       </a-form-item>
       <a-form-item label="固定底部">
-        <a-switch v-model:checked="current.attrs.bottom"></a-switch>
+        <a-switch v-model:checked="current.attrs.fixed"></a-switch>
+      </a-form-item>
+      <a-form-item label="占位元素" v-if="current.attrs.fixed">
+        <a-switch v-model:checked="current.attrs.placeholder"></a-switch>
+      </a-form-item>
+      <a-form-item label="安全区适配">
+        <a-switch v-model:checked="current.attrs.safeAreaInsetTop"></a-switch>
       </a-form-item>
       <a-form-item label="导航配置">
         <div
@@ -19,7 +25,7 @@
           v-for="(item, index) in current.children"
           :key="index"
         >
-          <a-input v-model:value="item.attrs.tabTitle" allowClear placeholder="请输入导航标题"></a-input>
+          <a-input v-model:value="item.attrs.name" allowClear placeholder="请输入导航标题"></a-input>
           <a-button
             style="margin: 0 5px;"
             @click="edit(item, index)"
@@ -37,12 +43,30 @@
             </template>
           </a-button>
         </div>
+        <a-button type="primary" size="small" @click="add">添加选项</a-button>
       </a-form-item>
     </a-form>
   </div>
   <choose-icon v-model:visible="visible" @click="choose"></choose-icon>
   <a-modal v-model:visible="editVisible" title="编辑数据源" @ok="ok" @cancel="cancel">
     <a-form :model="current.children[currentIndex]">
+      <a-form-item label="红点">
+        <a-switch v-model:checked="current.children[currentIndex].attrs.dot"></a-switch>
+      </a-form-item>
+      <a-form-item label="徽标内容">
+        <a-input
+          allowClear
+          placeholder="请输入徽标内容"
+          v-model:value="current.children[currentIndex].attrs.badge"
+        ></a-input>
+      </a-form-item>
+      <a-form-item label="路由链接">
+        <a-input
+          allowClear
+          placeholder="请输入路由"
+          v-model:value="current.children[currentIndex].attrs.to"
+        ></a-input>
+      </a-form-item>
       <a-form-item label="跳转链接">
         <a-input
           allowClear
@@ -124,6 +148,21 @@ let cancel = () => {
   current.value.children[currentIndex.value] = currentItem.value
   currentItem.value = null
 }
+
+let add = () => {
+  current.value.children.push({
+    type: 'tabbar-item',
+    attrs: {
+      name: '首页',
+      icon: 'home-o',
+      href: '',
+      to: '',
+      badge: '',
+      dot: false
+    }
+  })
+}
+
 watch(() => current.value, val => {
   localStorage.setItem('currentComponent', JSON.stringify(val))
   store.commit('setCurrentComponent', val)

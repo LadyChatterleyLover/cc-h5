@@ -14,11 +14,11 @@
     >
       <div>{{ attrs.rightOptions.text }}</div>
       <div style="margin: 0 4px;">
-        <nut-icon
+        <van-icon
           :name="attrs.rightOptions.icon"
           :size="attrs.rightOptions.iconSize"
           :color="attrs.rightOptions.iconColor"
-        ></nut-icon>
+        ></van-icon>
       </div>
     </div>
   </div>

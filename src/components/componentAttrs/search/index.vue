@@ -2,82 +2,54 @@
   <div style="padding: 10px 12px;" v-if="current">
     <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
       <a-form-item label="左内侧文案">
-        <a-radio-group v-model:value="leftin" name="leftin">
-          <a-radio value="text">文本</a-radio>
-          <a-radio value="icon">图标</a-radio>
-        </a-radio-group>
-        <a-input
-          style="margin-top: 20px;"
-          v-if="leftin === 'text'"
-          v-model:value="current.attrs.leftin"
-          placeholder="请输入左内侧文案"
-          allowClear
-        ></a-input>
+        <a-input v-model:value="current.attrs.label" placeholder="请输入左内侧文案" allowClear></a-input>
+      </a-form-item>
+      <a-form-item label="左内侧图标">
+        <a-input v-model:value="current.attrs.leftIcon" placeholder="请输入左内侧文案" allowClear></a-input>
         <a-button
           style="margin-top: 20px;"
           type="primary"
-          v-if="leftin === 'icon'"
-          @click="clickBtn('leftin')"
+          @click="clickBtn('leftIcon')"
           size="small"
         >选择图标</a-button>
       </a-form-item>
       <a-form-item label="左外侧文案">
-        <a-radio-group v-model:value="leftout" name="leftout">
+        <a-radio-group v-model:value="left" name="left">
           <a-radio value="text">文本</a-radio>
           <a-radio value="icon">图标</a-radio>
         </a-radio-group>
         <a-input
           style="margin-top: 20px;"
-          v-if="leftout === 'text'"
-          v-model:value="current.attrs.leftout"
+          v-if="left === 'text'"
+          v-model:value="current.attrs.left"
           placeholder="请输入左外侧文案"
           allowClear
         ></a-input>
         <a-button
           style="margin-top: 20px;"
           type="primary"
-          v-if="leftout === 'icon'"
-          @click="clickBtn('leftout')"
+          v-if="left === 'icon'"
+          @click="clickBtn('left')"
           size="small"
         >选择图标</a-button>
       </a-form-item>
       <a-form-item label="右内侧文案">
-        <a-radio-group v-model:value="rightin" name="rightin">
+        <a-radio-group v-model:value="rightIcon" name="rightIcon">
           <a-radio value="text">文本</a-radio>
           <a-radio value="icon">图标</a-radio>
         </a-radio-group>
         <a-input
           style="margin-top: 20px;"
-          v-if="rightin === 'text'"
-          v-model:value="current.attrs.rightin"
+          v-if="rightIcon === 'text'"
+          v-model:value="current.attrs.rightIcon"
           placeholder="请输入右内侧文案"
           allowClear
         ></a-input>
         <a-button
           style="margin-top: 20px;"
           type="primary"
-          v-if="rightin === 'icon'"
-          @click="clickBtn('rightin')"
-          size="small"
-        >选择图标</a-button>
-      </a-form-item>
-      <a-form-item label="右外侧文案">
-        <a-radio-group v-model:value="rightout" name="rightout">
-          <a-radio value="text">文本</a-radio>
-          <a-radio value="icon">图标</a-radio>
-        </a-radio-group>
-        <a-input
-          style="margin-top: 20px;"
-          v-if="rightout === 'text'"
-          v-model:value="current.attrs.rightout"
-          placeholder="请输入右外侧文案"
-          allowClear
-        ></a-input>
-        <a-button
-          style="margin-top: 20px;"
-          type="primary"
-          v-if="rightout === 'icon'"
-          @click="clickBtn('rightout')"
+          v-if="rightIcon === 'icon'"
+          @click="clickBtn('rightIcon')"
           size="small"
         >选择图标</a-button>
       </a-form-item>
@@ -90,22 +62,36 @@
       <a-form-item label="默认值">
         <a-input v-model:value="current.value" placeholder="请输入默认值" allowClear></a-input>
       </a-form-item>
-      <a-form-item label="输入框类型">
-        <a-select v-model:value="current.attrs.inputType">
-          <a-select-option value="text">普通</a-select-option>
-          <a-select-option value="number">数字</a-select-option>
-          <a-select-option value="password">密码</a-select-option>
-          <a-select-option value="digit">小数点</a-select-option>
-        </a-select>
-      </a-form-item>
       <a-form-item label="外部背景颜色">
         <color-picker v-model:pureColor="current.attrs.background"></color-picker>
       </a-form-item>
-      <a-form-item label="内部部背景颜色">
-        <color-picker v-model:pureColor="current.attrs.inputBackground"></color-picker>
+      <a-form-item label="显示取消按钮">
+        <a-switch v-model:checked="current.attrs.showAction"></a-switch>
+      </a-form-item>
+      <a-form-item label="取消按钮文案" v-if="current.attrs.showAction">
+        <a-input placeholder="请输入取消按钮文案" v-model:value="current.attrs.actionText"></a-input>
       </a-form-item>
       <a-form-item label="可清空">
         <a-switch v-model:checked="current.attrs.clearable"></a-switch>
+      </a-form-item>
+      <a-form-item label="禁用状态">
+        <a-switch v-model:checked="current.attrs.disabled"></a-switch>
+      </a-form-item>
+      <a-form-item label="只读状态">
+        <a-switch v-model:checked="current.attrs.readonly"></a-switch>
+      </a-form-item>
+      <a-form-item label="错误状态">
+        <a-switch v-model:checked="current.attrs.error"></a-switch>
+      </a-form-item>
+      <a-form-item label="错误提示" v-if="current.attrs.error">
+        <a-input placeholder="请输入取消按钮文案" v-model:value="current.attrs.errorMessage"></a-input>
+      </a-form-item>
+      <a-form-item label="文本位置">
+        <a-select v-model:value="current.attrs.inputAlign">
+          <a-select-option value="left">左侧对齐</a-select-option>
+          <a-select-option value="center">居中对齐</a-select-option>
+          <a-select-option value="right">右侧对齐</a-select-option>
+        </a-select>
       </a-form-item>
     </a-form>
   </div>
@@ -123,10 +109,8 @@ let current: any = computed(() => store.state.currentComponent)
 let labelCol = { span: 8 }
 let wrapperCol = { span: 14 }
 
-let leftin = ref<'icon' | 'text'>('text')
-let leftout = ref<'icon' | 'text'>('text')
-let rightin = ref<'icon' | 'text'>('text')
-let rightout = ref<'icon' | 'text'>('text')
+let left = ref<'icon' | 'text'>('text')
+let rightIcon = ref<'icon' | 'text'>('text')
 
 
 let visible = ref<boolean>(false)

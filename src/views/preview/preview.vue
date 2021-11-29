@@ -5,7 +5,7 @@
         <div v-for="(item, index) in componentList" :key="index">
           <div class="item">
             <component
-              :is="`nut-${item.type}`"
+              :is="`van-${item.type}`"
               v-model="item.value"
               v-bind="{
                 ...item.attrs,
@@ -33,7 +33,7 @@
               <template v-if="item.type === 'swiper' || item.type === 'tabbar'">
                 <component
                   v-for="(child, i) in item.children"
-                  :is="`nut-${child.type}`"
+                  :is="`van-${child.type}`"
                   :key="i"
                   v-bind="child.attrs"
                 >
@@ -45,31 +45,31 @@
                 </component>
               </template>
               <template #leftin v-if="item.type === 'searchbar'">
-                <nut-icon
+                <van-icon
                   :name="(item.attrs as any).leftin.slice(5)"
                   v-if="(item.attrs as any).leftin && (item.attrs as any).leftin.startsWith('icon-')"
-                ></nut-icon>
+                ></van-icon>
                 <span v-else>{{ (item.attrs as any).leftin }}</span>
               </template>
               <template #leftout v-if="item.type === 'searchbar'">
-                <nut-icon
+                <van-icon
                   :name="(item.attrs as any).leftout.slice(5)"
                   v-if="(item.attrs as any).leftout && (item.attrs as any).leftout.startsWith('icon-')"
-                ></nut-icon>
+                ></van-icon>
                 <span v-else>{{ (item.attrs as any).leftout }}</span>
               </template>
               <template #rightin v-if="item.type === 'searchbar'">
-                <nut-icon
+                <van-icon
                   :name="(item.attrs as any).rightin.slice(5)"
                   v-if="(item.attrs as any).rightin && (item.attrs as any).rightin.startsWith('icon-')"
-                ></nut-icon>
+                ></van-icon>
                 <span v-else>{{ (item.attrs as any).rightin }}</span>
               </template>
               <template #rightout v-if="item.type === 'searchbar'">
-                <nut-icon
+                <van-icon
                   :name="(item.attrs as any).rightout.slice(5)"
                   v-if="(item.attrs as any).rightout && (item.attrs as any).rightout.startsWith('icon-')"
-                ></nut-icon>
+                ></van-icon>
                 <span v-else>{{ (item.attrs as any).rightout }}</span>
               </template>
             </component>

@@ -4,7 +4,6 @@ import GoodsNav from './goodsNav'
 import GoodsAction from './goodsAction'
 import GoodsCard from './goodsCard'
 import Coupon from './coupon'
-import ContactCard from './contactCard'
 import Qrcode from './qrcode'
 
 const components = [
@@ -13,7 +12,6 @@ const components = [
   GoodsAction,
   GoodsCard,
   Coupon,
-  ContactCard,
   Qrcode
 ]
 

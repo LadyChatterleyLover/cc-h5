@@ -4,7 +4,7 @@
       <div class="cc-goods-card-thumb">
         <img :src="attrs.thumb" style="width: 100%;height: 100%;" />
         <div class="cc-goods-card-thumb-tag" v-if="attrs.tag">
-          <nut-tag type="danger" mark>{{ attrs.tag }}</nut-tag>
+          <van-tag type="danger" mark>{{ attrs.tag }}</van-tag>
         </div>
       </div>
       <div class="cc-goods-card-content">

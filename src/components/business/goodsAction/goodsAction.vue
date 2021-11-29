@@ -7,7 +7,7 @@
         :key="index"
       >
         <div>
-          <nut-icon :name="item.icon" :color="item.iconColor"></nut-icon>
+          <van-icon :name="item.icon" :color="item.iconColor"></van-icon>
           <span
             class="info"
             v-if="item.info && !item.dot"

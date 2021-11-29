@@ -6,5 +6,7 @@ export interface IconAttrs {
   name?: string,
   color?: string,
   company?: 'px' | 'em' | 'rem',
-  size: string | number
+  size: string | number,
+  dot?: boolean,
+  badge?: string,
 }

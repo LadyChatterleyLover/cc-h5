@@ -3,13 +3,12 @@ import { CSSProperties } from 'vue'
 export interface ProgressAttrs {
   style?: CSSProperties,
   percentage?: number,
-  strokeColor?: string,
+  color?: string,
   strokeWidth?: string,
-  size?: 'base' | 'small' | 'large',
-  showText?: boolean,
-  textInside?: boolean,
+  trackColor?: string,
+  pivotColor?: string,
   textColor?: string,
-  status?: '' | 'active' | 'icon',
-  iconName?: string,
-  iconColor?: string
+  inactive?: boolean,
+  showPivot?: boolean
+  pivotText?: string,
 }
