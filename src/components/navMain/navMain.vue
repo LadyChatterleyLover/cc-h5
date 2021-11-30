@@ -1,18 +1,27 @@
 <template>
   <div class="main">
-    <div class="editor" id="cc-h5-editor" @drop="drop" @dragover="dragover" @click="clickEditor">
+    <div
+      class="editor"
+      id="cc-h5-editor"
+      :style="{ width: width + 'px', height: height + 'px' }"
+      @drop="drop"
+      @dragover="dragover"
+      @click="clickEditor"
+    >
       <div ref="editorItem" v-if="componentList && componentList.length">
         <div v-for="(item, index) in componentList" :key="index">
           <a-dropdown :trigger="['contextmenu']">
             <div
               class="item"
-              :class="{
-                padding: item.type === 'slider' || item.type === 'progress',
-                active: activeIndex === index,
-                bottom: (activeIndex === index && item.type === 'tabbar' && (item.attrs as any).fixed)
-                  || activeIndex === index && item.type === 'goods-action'
-                  || activeIndex === index && item.type === 'submit-bar'
-              }"
+              :class="[
+                {
+                  padding: item.type === 'slider' || item.type === 'progress',
+                  active: activeIndex === index,
+                  bottom: (activeIndex === index && item.type === 'tabbar' && (item.attrs as any).fixed)
+                    || activeIndex === index && item.type === 'goods-action'
+                    || activeIndex === index && item.type === 'submit-bar'
+                }
+              ]"
               @click="clickItem(item, index)"
             >
               <component
@@ -43,10 +52,11 @@
                     || item.type === 'divider'
                     || item.type === 'tag'
                     || item.type === 'notice-bar'
+                    || item.type === 'loading'
                   "
                 >{{ (item.attrs as any).text }}</template>
                 <template
-                  v-if="item.type === 'swipe' || item.type === 'radio-group' || item.type === 'tabbar' || item.type === 'checkbox-group'"
+                  v-if="item.type === 'swipe' || item.type === 'steps' || item.type === 'radio-group' || item.type === 'tabbar' || item.type === 'checkbox-group'"
                 >
                   <component
                     v-for="(child, i) in item.children"
@@ -54,7 +64,9 @@
                     :key="i"
                     v-bind="child.attrs"
                   >
-                    <span v-if="item.type === 'tabbar'">{{ (child.attrs as any).name }}</span>
+                    <span
+                      v-if="item.type === 'tabbar' || item.type === 'steps'"
+                    >{{ (child.attrs as any).name }}</span>
                     <span
                       v-if="item.type === 'radio-group' || item.type === 'checkbox-group'"
                     >{{ (child.attrs as any).text }}</span>
@@ -89,6 +101,20 @@
                   ></van-icon>
                   <span v-else>{{ (item.attrs as any).rightIcon }}</span>
                 </template>
+                <template #value v-if="item.type === 'cell'">{{ (item.attrs as any).value }}</template>
+                <template #right-icon v-if="item.type === 'cell'">
+                  <van-icon
+                    v-if="(item.attrs as any).isLink"
+                    style="line-height: inherit;"
+                    :name="(item.attrs as any).arrowDirection === 'right' ? 'arrow' : `arrow-${(item.attrs as any).arrowDirection}`"
+                  ></van-icon>
+                  <van-icon
+                    v-else
+                    style="line-height: inherit;"
+                    :name="(item.attrs as any).rightIcon"
+                  ></van-icon>
+                </template>
+                <template #extra v-if="item.type === 'cell'">{{ (item.attrs as any).extra }}</template>
               </component>
             </div>
             <template #overlay>
@@ -100,6 +126,50 @@
           </a-dropdown>
         </div>
       </div>
+      <a-popover title="设置画布尺寸" placement="right" :visible="visible">
+        <template #content>
+          <div class="phone">
+            <div
+              @click="clickPhoneItem(index)"
+              class="phone-item"
+              v-for="(item, index) in phones"
+              :key="index"
+            >
+              <div style="width: 20px;height: 40px;border: 1px solid #eee;"></div>
+              <div style="margin-top: 8px;">{{ item.name }}</div>
+            </div>
+          </div>
+          <div style="margin-top: 20px;">
+            <h4>自定义尺寸</h4>
+            <a-form>
+              <a-form-item label="宽">
+                <a-input-number
+                  style="width: 100%"
+                  v-model:value="inputWidth"
+                  placeholder="请输入画布宽度"
+                ></a-input-number>
+              </a-form-item>
+              <a-form-item label="高">
+                <a-input-number
+                  style="width: 100%"
+                  v-model:value="inputHeight"
+                  placeholder="请输入画布高度"
+                ></a-input-number>
+              </a-form-item>
+              <a-form-item :wrapper-col="{ span: 14, offset: 3 }">
+                <a-button @click.stop="update" type="primary" size="small">更新画布</a-button>
+              </a-form-item>
+            </a-form>
+          </div>
+        </template>
+        <div class="model">
+          <a-button type="primary" @click.stop="visible = true">
+            <template #icon>
+              <DesktopOutlined />
+            </template>
+          </a-button>
+        </div>
+      </a-popover>
     </div>
   </div>
 </template>
@@ -109,6 +179,7 @@ import { computed, ComputedRef, watch, ref } from 'vue'
 import { useStore } from 'vuex'
 import { ComponentItem } from '@/types'
 import { message } from 'ant-design-vue'
+import { DesktopOutlined } from '@ant-design/icons-vue'
 
 let store = useStore()
 
@@ -116,6 +187,12 @@ let componentList: ComputedRef<ComponentItem[]> = computed(() => store.state.com
 let currentComponent = computed(() => store.state.currentComponent)
 let activeIndex = computed(() => store.state.activeIndex)
 let editorItem = ref<HTMLDivElement | null>(null)
+let visible = ref<boolean>(false)
+let width = ref<number>(375)
+let inputWidth = ref<number>(375)
+let height = ref<number>(667)
+let inputHeight = ref<number>(667)
+
 
 let dragover = (e: DragEvent) => {
   e.preventDefault()
@@ -203,7 +280,37 @@ let clickEditor = (e: any) => {
     localStorage.removeItem('currentComponent')
   }
 }
+let clickPhoneItem = (index: number) => {
+  if (index === 0) {
+    inputWidth.value = 375
+    width.value = 375
+    inputHeight.value = 667
+    height.value = 667
+  } else {
+    inputWidth.value = 414
+    width.value = 414
+    inputHeight.value = 736
+    height.value = 736
+  }
+  visible.value = false
+}
 
+
+
+let phones = ref<{ name: string }[]>([
+  {
+    name: 'iphone6/7/8'
+  },
+  {
+    name: 'iphone6/7/8plus'
+  },
+])
+
+let update = () => {
+  width.value = inputWidth.value
+  height.value = inputHeight.value
+  visible.value = false
+}
 
 watch(() => currentComponent.value, val => {
   localStorage.setItem('currentComponent', JSON.stringify(val))
@@ -225,14 +332,17 @@ watch(() => currentComponent.value, val => {
   position: relative;
 }
 .editor {
-  height: 667px;
-  width: 375px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   background: #fff;
   position: absolute;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
+  .model {
+    position: absolute;
+    top: 0;
+    right: -80px;
+  }
 }
 .item {
   position: relative;
@@ -267,5 +377,17 @@ watch(() => currentComponent.value, val => {
 }
 .padding {
   padding: 15px 0;
+}
+.phone {
+  display: flex;
+  align-items: center;
+  &-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+  }
 }
 </style>

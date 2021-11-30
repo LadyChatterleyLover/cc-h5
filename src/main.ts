@@ -12,6 +12,7 @@ import charts from './components/charts'
 import goods from './components/business'
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import 'animate.css'
 
 const app = createApp(App)
 app.use(router)

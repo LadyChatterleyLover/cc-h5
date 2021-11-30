@@ -1,8 +1,8 @@
 <template>
   <div class="right">
     <div class="container">
-      <template v-if="current">
-        <h2 style="margin: 10px;">属性设置</h2>
+      <div style="padding: 10px" v-if="current">
+        <h2>属性设置</h2>
         <input-attrs v-if="current.type === 'field'"></input-attrs>
         <textarea-attrs v-if="current.type === 'textarea'"></textarea-attrs>
         <icon-attrs v-if="current.type === 'icon'"></icon-attrs>
@@ -44,7 +44,10 @@
         <submit-bar-attrs v-if="current.type === 'submit-bar'"></submit-bar-attrs>
         <address-list-attrs v-if="current.type === 'address-list'"></address-list-attrs>
         <address-edit-attrs v-if="current.type === 'address-edit'"></address-edit-attrs>
-      </template>
+        <loading-attrs v-if="current.type === 'loading'"></loading-attrs>
+        <cell-attrs v-if="current.type === 'cell'"></cell-attrs>
+        <steps-attrs v-if="current.type === 'steps'"></steps-attrs>
+      </div>
       <div v-else>
         <a-result status="404" title="还没有数据喔" sub-title="赶快拖拽组件来生成你的H5页面吧"></a-result>
       </div>
@@ -53,6 +56,9 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, ComputedRef, ref } from 'vue'
+import { useStore } from 'vuex'
+import { ComponentItem } from '@/types'
 import inputAttrs from '../componentAttrs/input/index.vue'
 import textareaAttrs from '../componentAttrs/textarea/index.vue'
 import iconAttrs from '../componentAttrs/icon/index.vue'
@@ -94,13 +100,10 @@ import contactListAttrs from '../componentAttrs/contactList/index.vue'
 import submitBarAttrs from '../componentAttrs/submitBar/index.vue'
 import addressListAttrs from '../componentAttrs/addressList/index.vue'
 import addressEditAttrs from '../componentAttrs/addressEdit/index.vue'
+import loadingAttrs from '../componentAttrs/loading/index.vue'
+import cellAttrs from '../componentAttrs/cell/index.vue'
+import stepsAttrs from '../componentAttrs/steps/index.vue'
 
-
-
-
-import { computed, ComputedRef } from 'vue'
-import { useStore } from 'vuex'
-import { ComponentItem } from '@/types'
 
 let store = useStore()
 

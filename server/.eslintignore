@@ -1,2 +1,5 @@
 coverage
 app
+/app
+/app/
+app/

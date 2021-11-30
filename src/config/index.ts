@@ -531,6 +531,75 @@ export const baseComponent: ComponentItem[] = [
       showPageSize: 5,
       forceEllipses: false,
     }
+  },
+  {
+    type: 'loading',
+    label: '加载',
+    icon: 'underway-o',
+    attrs: {
+      color: '#c9c9c9',
+      type: 'circular',
+      size: 30,
+      textSize: 14,
+      textColor: '#c9c9c9',
+      vertical: false,
+      text: ''
+    }
+  },
+  {
+    type: 'cell',
+    label: '单元格',
+    icon: 'records',
+    attrs: {
+      title: '单元格',
+      value: '内容',
+      label: '描述信息',
+      size: '',
+      icon: 'location-o',
+      rightIcon: '',
+      extra: '',
+      url: '',
+      to: '',
+      border: true,
+      replace: false,
+      clickable: false,
+      isLink: true,
+      required: false,
+      center: false,
+      arrowDirection: 'right'
+    }
+  },
+  {
+    type: 'steps',
+    label: '步骤条',
+    icon: 'flag-o',
+    attrs: {
+      active: 0,
+      direction: 'horizontal',
+      activeIcon: 'checked',
+      inactiveIcon: '',
+      finishIcon: '',
+      activeColor: '#07c160',
+      inactiveColor: '#969799',
+    },
+    children: [
+      {
+        type: 'step',
+        attrs: { name: '买家下单' }
+      },
+      {
+        type: 'step',
+        attrs: { name: '商家接单' }
+      },
+      {
+        type: 'step',
+        attrs: { name: '买家提货' }
+      },
+      {
+        type: 'step',
+        attrs: { name: '交易完成' }
+      },
+    ]
   }
 ]
 

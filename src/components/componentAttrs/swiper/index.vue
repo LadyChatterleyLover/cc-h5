@@ -9,7 +9,13 @@
             placeholder="请输入图片路径"
             allowClear
           ></a-input>
-          <a-button @click="del(item, index)" danger shape="circle" size="small">
+          <a-button
+            style="margin-left: 5px;"
+            @click="del(item, index)"
+            danger
+            shape="circle"
+            size="small"
+          >
             <template #icon>
               <MinusOutlined />
             </template>

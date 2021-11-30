@@ -27,6 +27,48 @@ module.exports = appInfo => {
   config.mongoose = {
     url: 'mongodb://localhost:27017/cc-h5'
   }
+  config.oss = {
+    client: {
+      accessKeyId: 'LTAI5t8mE8GsnFurE4jBYQmW',
+      accessKeySecret: 'mgJHZqnQUzRRwenSBkfwlHHWEwGzgM',
+      bucket: 'lp-disk',
+      endpoint: 'oss-cn-chengdu.aliyuncs.com',
+      timeout: '60s',
+    },
+  }
+
+  // 上传格式和大小限制
+  config.multipart = {
+    // fileSize: '50mb',
+    fileSize: 1048576000,
+    // mode: 'stream',
+    mode: "file",
+    fileExtensions: [
+      // images
+      '.jpg', '.jpeg', // image/jpeg
+      '.png', // image/png, image/x-png
+      '.gif', // image/gif
+      '.bmp', // image/bmp
+      '.wbmp', // image/vnd.wap.wbmp
+      '.webp',
+      '.tif',
+      '.psd',
+      // text
+      '.svg',
+      '.js', '.jsx',
+      '.json',
+      '.css', '.less',
+      '.html', '.htm',
+      '.xml',
+      // tar
+      '.zip',
+      '.gz', '.tgz', '.gzip',
+      // video
+      '.mp3',
+      '.mp4',
+      '.avi',
+    ],
+  }
   config.cors = {
     origin: "*",
     allowMethods: "GET, HEAD, PUT, POST, DELETE, PATCH",

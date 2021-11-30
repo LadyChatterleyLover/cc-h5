@@ -7,14 +7,35 @@
           <img src="https://github.githubassets.com/pinned-octocat.svg" />
         </a>
       </div>
+      <div style="margin-left: 15px;">
+        <a-button type="primary" size="small" @click="downloadTemplate">下载项目模板</a-button>
+      </div>
     </div>
     <div class="icons">
       <a-button @click="open" style="margin-right: 20px;" type="primary" size="small">模板库</a-button>
       <div class="item" @click="clickItem(item)" v-for="(item, index) in list" :key="index">
-        <div class="icon">
-          <component :is="item.icon"></component>
-        </div>
-        <div>{{ item.name }}</div>
+        <template v-if="item.name !== '上传json'">
+          <div class="icon">
+            <component :is="item.icon"></component>
+          </div>
+          <div>{{ item.name }}</div>
+        </template>
+        <template v-else>
+          <a-upload
+            :showUploadList="false"
+            name="file"
+            :multiple="true"
+            action="http://localhost:7001/upload"
+            @change="handleChange"
+          >
+            <div class="item" style="color: #409eff;margin-right: 0px;">
+              <div class="icon">
+                <component :is="item.icon"></component>
+              </div>
+              <div>{{ item.name }}</div>
+            </div>
+          </a-upload>
+        </template>
       </div>
     </div>
   </div>
@@ -77,7 +98,12 @@
 </template>
 
 <script lang="ts" setup>
-import { PlayCircleOutlined, SaveOutlined, ExclamationCircleOutlined, EyeOutlined, DownloadOutlined, CopyOutlined, DeleteOutlined, MobileOutlined } from '@ant-design/icons-vue'
+import {
+  PlayCircleOutlined, SaveOutlined, ExclamationCircleOutlined,
+  EyeOutlined, DownloadOutlined, CopyOutlined, UploadOutlined,
+  DeleteOutlined, MobileOutlined
+}
+  from '@ant-design/icons-vue'
 import { useStore } from 'vuex'
 import { Modal, message } from 'ant-design-vue'
 import { computed, ComputedRef, ref, watch, createVNode } from 'vue'
@@ -151,6 +177,10 @@ let list: ListItem[] = [
     name: '查看json'
   },
   {
+    icon: UploadOutlined,
+    name: '上传json'
+  },
+  {
     icon: DownloadOutlined,
     name: '导出vue文件'
   },
@@ -217,7 +247,7 @@ let options: Options[] = [
 ]
 
 let clickItem = (item: ListItem) => {
-  if (!componentList.value) {
+  if (!componentList.value && item.name !== '上传json') {
     message.warn('请先生成组件')
     return
   }
@@ -330,6 +360,31 @@ let useTemplate = (item: any) => {
     templateVisible.value = false
   }
 }
+
+let downloadTemplate = () => {
+
+}
+
+
+const handleChange = (info: any) => {
+  if (info.file.status === 'done') {
+    let data = info.file.response.data
+    let arr: ComponentItem[] = []
+    if (componentList.value) {
+      arr = componentList.value.concat(data)
+    } else {
+      arr = data
+    }
+
+    localStorage.setItem('componentList', JSON.stringify(arr))
+    store.commit('setComponentList', arr)
+    message.success(`上传成功`)
+  } else if (info.file.status === 'error') {
+    message.error(`上传失败`)
+  }
+}
+
+
 
 watch(() => [activeKey.value, templates.value], val => {
   currentTemplate.value = (val[1] as any)!.filter((item: any) => item.category === val[0])
